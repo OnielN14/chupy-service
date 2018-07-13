@@ -36,8 +36,8 @@
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
-            <li class="start active open">
-                <a href="javascript:;">
+            <li class="start open {{ Request::segment(1) === 'dashboard' ? 'active' : null }} ">
+                <a href="{{ route('dashboard') }}">
                 <i class="icon-home"></i>
                 <span class="title">Dashboard</span>
                 <span class="selected"></span>
@@ -46,7 +46,7 @@
             <li>
                 <a href="javascript:;">
                 <i class="icon-pencil"></i>
-                <span class="title">Post</span>
+                <span class="title">Konten</span>
                 <span class="arrow "></span>
                 </a>
                 <ul class="sub-menu">
@@ -78,40 +78,17 @@
                     </li>
                     <li>
                         <a href="components_context_menu.html">
-                        Context Menu</a>
+                        Jenis Produk</a>
                     </li>
                     <li>
                         <a href="components_dropdowns.html">
-                        Custom Dropdowns</a>
+                        Tag Produk</a>
                     </li>
                     
                 </ul>
             </li>
-
-            {{--  <li>
-                <a href="javascript:;">
-                <i class="icon-feed"></i>
-                <span class="title">Feedback</span>
-                <span class="arrow "></span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="components_pickers.html">
-                        Product</a>
-                    </li>
-                    <li>
-                        <a href="components_context_menu.html">
-                        Context Menu</a>
-                    </li>
-                    <li>
-                        <a href="components_dropdowns.html">
-                        Custom Dropdowns</a>
-                    </li>
-                    
-                </ul>
-            </li>  --}}
             
-            <li class="last ">
+            <li class="last {{ Request::segment(1) === 'map' ? 'active' : null }}">
                 <a href="javascript:;">
                 <i class="icon-pointer"></i>
                 <span class="title">Maps</span>
@@ -119,12 +96,8 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="maps_google.html">
-                        Google Maps</a>
-                    </li>
-                    <li>
-                        <a href="maps_vector.html">
-                        Vector Maps</a>
+                        <a href="{{ route('map') }}">
+                        Peta Petshop</a>
                     </li>
                 </ul>
             </li>
