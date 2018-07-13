@@ -97,7 +97,7 @@
                 <ul class="sub-menu">
                     <li>
                         <a href="{{ route('map') }}">
-                        Peta Petshop</a>
+                        Petshop Map</a>
                     </li>
                 </ul>
             </li>
