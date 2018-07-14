@@ -19,6 +19,8 @@
     <script src="{{ asset('global/plugins/jquery.cokie.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('global/plugins/uniform/jquery.uniform.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('global/plugins/datatables/media/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
 
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
