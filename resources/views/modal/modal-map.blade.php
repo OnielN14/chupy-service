@@ -6,7 +6,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
                 <h4 class="modal-title" id="modal-title">
-                    <strong></strong>
+                    <strong>Add New Map</strong>
                 </h4>
             </div>
             <div class="modal-body">
@@ -59,7 +59,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn blue">Save changes</button>
+                <button type="button" class="btn blue" form="form-map">Save changes</button>
             </div>
         </div>
         <!-- /.modal-content -->

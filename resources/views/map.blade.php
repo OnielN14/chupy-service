@@ -40,8 +40,8 @@
                             <i class="fa fa-globe"></i>Map
                         </div>
                         <div class="actions">
-                            <a href="javascript:void(0)" class="btn btn-circle btn-primary btn-sm" onclick="add_data()">
-                            <i class="fa fa-plus"></i> Add </a>
+                            <button class="btn btn-circle btn-primary btn-sm" data-toggle="modal" data-target="#modal-map">
+                            <i class="fa fa-plus"></i> Add </button>
                             <a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:void(0)"  >
                             </a>
                         </div>
@@ -94,21 +94,36 @@
             ]
         });
 
-        $('#imageMap').change(function () {
-            var imgPath = $(this)[0].value;
-            var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-            if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
-                readURL(this);
-            else
-                alert("Please select image file (jpg, jpeg, png).")
-        });
-     
-        $('#modal-map').on('shown.bs.modal', function () {
-         chupyMap();
-        });
         
      
     });
+
+    
+    $('#imageMap').change(function () {
+        var imgPath = $(this)[0].value;
+        var ext = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+        if (ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg")
+            readURL(this);
+        else
+            alert("Please select image file (jpg, jpeg, png).")
+    });
+ 
+    $('#modal-map').on('shown.bs.modal', function () {
+     chupyMap();
+    });
+
+    $('form#form-map').on('keyup keypress', function(e) {
+        var keyCode = e.keyCode || e.which;
+        if (keyCode === 13) {
+          e.preventDefault();
+          return false;
+        }
+      });
+      
+      $('form#form-map').submit(function(e) {
+        add_data();
+        return false
+      })
 
     function changeProfile() {
         $('#imageMap').click();
@@ -129,14 +144,14 @@
         $('#remove').val(1);
     }
    
-    function add_data(){
+    {{-- function add_data(){
         $('#modal-map').modal('hide');
         $('#form-map')[0].reset(); // reset form on modals
         $('.form-group').removeClass('has-error'); // clear error class
         $('.help-block').empty(); // clear error string
         $('#modal-map').modal('show'); // show bootstrap modal
         $('#modal-title').text('Add New Map');
-    }
+    } --}}
 
   var map;
 
