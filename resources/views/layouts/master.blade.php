@@ -11,6 +11,7 @@
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo ">
 
     @include('layouts.header')
+    @yield('css')
 <div class="page-container">
     @include('layouts.sidebar')
     @yield('content')

@@ -21,6 +21,6 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/map','MapController@index')->name('map');
-    Route::get('/map/getPost','MapController@getPost')->name('map.getPost');
+    Route::get('/map/getMap','MapController@getMap')->name('map.getMap');
 });
 

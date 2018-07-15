@@ -15,7 +15,7 @@ class MapController extends Controller
         return view('map');
     }
 
-    public function getPost()
+    public function getMap()
     {
         $query = DB::table('map')->select('id','nama','deskripsi','foto','longitude','latitude');
         return DataTables::of($query)
