@@ -1,0 +1,10 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/components/components-md.css": "/components/components-md.css",
+    "/plugins/plugins-md.css": "/plugins/plugins-md.css",
+    "/global/_uniform.css": "/global/_uniform.css",
+    "/layout/layout.css": "/layout/layout.css",
+    "/global/scripts/metronic.js": "/global/scripts/metronic.js",
+    "/layout/scripts/layout.js": "/layout/scripts/layout.js"
+}
