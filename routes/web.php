@@ -24,3 +24,5 @@ Route::middleware('auth')->group(function(){
     Route::get('/map/getMap','MapController@getMap')->name('map.getMap');
 });
 
+
+

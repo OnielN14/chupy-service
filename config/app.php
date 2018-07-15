@@ -170,6 +170,7 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class, 
         InfyOm\MetronicTemplates\MetronicTemplatesServiceProvider::class, 
+        Jlapp\Swaggervel\SwaggervelServiceProvider::class
 
     ],
 
