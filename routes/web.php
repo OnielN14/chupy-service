@@ -11,10 +11,16 @@
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('home');
+    return view('layouts.master');
 });
 
 Auth::routes();
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/map','MapController@index')->name('map');
+    Route::get('/map/getMap','MapController@getMap')->name('map.getMap');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
