@@ -68,6 +68,7 @@ class Produk extends Model
 
 
     public $fillable = [
+        'id',
         'nama',
         'deskripsi',
         'stok',
