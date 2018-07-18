@@ -63,7 +63,7 @@ class Map extends Model
 {
     // use SoftDeletes;
 
-    public $table = 'map';
+    protected $table = 'map';
     
 
     // protected $dates = ['deleted_at'];

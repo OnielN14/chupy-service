@@ -7,9 +7,9 @@ use Response;
 
 /**
  * @SWG\Swagger(
- *   basePath="/api/v1",
+ *   basePath="/api",
  *   @SWG\Info(
- *     title="Laravel Generator APIs",
+ *     title="Chupy APIs",
  *     version="1.0.0",
  *   )
  * )
