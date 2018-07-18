@@ -23,3 +23,5 @@ Route::resource('maps', 'MapAPIController');
 // Route::resource('penggunas', 'PenggunaAPIController');
 
 Route::resource('produks', 'ProdukAPIController');
+
+Route::resource('kontens', 'KontenAPIController');
