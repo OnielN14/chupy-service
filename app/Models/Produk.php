@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Map",
- *      required={"nama", "deskripsi", "longitude", "latitude", "foto", "url_foto"},
+ *      definition="Produk",
+ *      required={""},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -26,24 +26,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="longitude",
- *          description="longitude",
- *          type="string"
+ *          property="stok",
+ *          description="stok",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="latitude",
- *          description="latitude",
- *          type="string"
+ *          property="harga",
+ *          description="harga",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="foto",
- *          description="foto",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="url_foto",
- *          description="url_foto",
- *          type="string"
+ *          property="idKategori",
+ *          description="idKategori",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -59,11 +57,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Map extends Model
+class Produk extends Model
 {
     // use SoftDeletes;
 
-    protected $table = 'map';
+    public $table = 'produk';
     
 
     // protected $dates = ['deleted_at'];
@@ -72,10 +70,9 @@ class Map extends Model
     public $fillable = [
         'nama',
         'deskripsi',
-        'longitude',
-        'latitude',
-        'foto',
-        'url_foto'
+        'stok',
+        'harga',
+        'idKategori'
     ];
 
     /**
@@ -84,12 +81,12 @@ class Map extends Model
      * @var array
      */
     protected $casts = [
+        'id'=>'integer',
         'nama' => 'string',
         'deskripsi' => 'string',
-        'longitude' => 'string',
-        'latitude' => 'string',
-        'foto' => 'string',
-        'url_foto' => 'string'
+        'stok' => 'integer',
+        'harga' => 'integer',
+        'idKategori' => 'integer'
     ];
 
     /**
@@ -98,12 +95,6 @@ class Map extends Model
      * @var array
      */
     public static $rules = [
-        'nama' => 'required',
-        'deskripsi' => 'required',
-        'longitude' => 'required',
-        'latitude' => 'required',
-        'foto' => 'required',
-        'url_foto' => 'required'
     ];
 
     
