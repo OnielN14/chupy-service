@@ -21,3 +21,5 @@ use Illuminate\Http\Request;
 Route::resource('maps', 'MapAPIController');
 
 // Route::resource('penggunas', 'PenggunaAPIController');
+
+Route::resource('produks', 'ProdukAPIController');

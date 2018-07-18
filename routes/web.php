@@ -26,3 +26,4 @@ Route::middleware('auth')->group(function(){
 
 
 // Route::resource('penggunas', 'PenggunaController');
+// Route::resource('produks', 'ProdukController');
