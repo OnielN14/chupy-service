@@ -27,3 +27,5 @@ Route::resource('produks', 'ProdukAPIController');
 Route::resource('kontens', 'KontenAPIController');
 
 Route::resource('petshops', 'PetshopAPIController');
+
+Route::resource('tag_kontens', 'TagKontenAPIController');

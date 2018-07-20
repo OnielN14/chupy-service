@@ -29,3 +29,4 @@ Route::middleware('auth')->group(function(){
 // Route::resource('produks', 'ProdukController');
 // Route::resource('kontens', 'KontenController');
 // Route::resource('petshops', 'PetshopController');
+// Route::resource('tagKontens', 'TagKontenController');
