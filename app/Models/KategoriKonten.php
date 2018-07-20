@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Konten",
+ *      definition="KategoriKonten",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,25 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="judul",
- *          description="judul",
+ *          property="nama",
+ *          description="nama",
  *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="deskripsi",
- *          description="deskripsi",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="idKategori",
- *          description="idKategori",
- *          type="integer",
- *          format="int32"
- *      ),
- *       @SWG\Property(
- *          property="idTag",
- *          description="idTag",
- *          type="string",
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -50,22 +33,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Konten extends Model
+class KategoriKonten extends Model
 {
-    // use SoftDeletes;
 
-    public $table = 'konten';
+    public $table = 'kategorikonten';
     
-
-    // protected $dates = ['deleted_at'];
 
 
     public $fillable = [
         'id',
-        'judul',
-        'deskripsi',
-        'idKategori',
-        'idTag'
+        'nama'
     ];
 
     /**
@@ -74,11 +51,8 @@ class Konten extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'judul' => 'string',
-        'deskripsi' => 'string',
-        'idKategori' => 'integer',
-        'idTag'=>'string'
+        'id'=>'integer',
+        'nama' => 'string'
     ];
 
     /**

@@ -23,7 +23,8 @@ class KontenRepository extends BaseRepository
         'id',
         'judul',
         'deskripsi',
-        'idKategori'
+        'idKategori',
+        'idTag'
     ];
 
     /**
