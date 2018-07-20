@@ -28,4 +28,6 @@ Route::middleware('auth')->group(function(){
 // Route::resource('penggunas', 'PenggunaController');
 // Route::resource('produks', 'ProdukController');
 // Route::resource('kontens', 'KontenController');
+// Route::resource('petshops', 'PetshopController');
+// Route::resource('tagKontens', 'TagKontenController');
 // Route::resource('kategoriKontens', 'KategoriKontenController');
