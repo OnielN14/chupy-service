@@ -31,6 +31,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="integer",
  *          format="int32"
  *      ),
+ *       @SWG\Property(
+ *          property="idTag",
+ *          description="idTag",
+ *          type="string",
+ *      ),
  *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
@@ -59,7 +64,8 @@ class Konten extends Model
         'id',
         'judul',
         'deskripsi',
-        'idKategori'
+        'idKategori',
+        'idTag'
     ];
 
     /**
@@ -71,7 +77,8 @@ class Konten extends Model
         'id' => 'integer',
         'judul' => 'string',
         'deskripsi' => 'string',
-        'idKategori' => 'integer'
+        'idKategori' => 'integer',
+        'idTag'=>'string'
     ];
 
     /**

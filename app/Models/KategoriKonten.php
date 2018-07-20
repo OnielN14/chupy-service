@@ -36,11 +36,12 @@ use Eloquent as Model;
 class KategoriKonten extends Model
 {
 
-    public $table = 'kategori_kontens';
+    public $table = 'kategorikonten';
     
 
 
     public $fillable = [
+        'id',
         'nama'
     ];
 
@@ -50,6 +51,7 @@ class KategoriKonten extends Model
      * @var array
      */
     protected $casts = [
+        'id'=>'integer',
         'nama' => 'string'
     ];
 
