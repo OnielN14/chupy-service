@@ -59,7 +59,7 @@ class Konten extends Model
         'id',
         'judul',
         'deskripsi',
-        'idKategori'
+        'idKategori',
     ];
 
     /**
@@ -71,8 +71,13 @@ class Konten extends Model
         'id' => 'integer',
         'judul' => 'string',
         'deskripsi' => 'string',
-        'idKategori' => 'integer'
+        'idKategori' => 'integer',
     ];
+
+    // public function tagkonten()
+    // {
+    //     return $this->belongsToMany('App\Tag');
+    // }
 
     /**
      * Validation rules

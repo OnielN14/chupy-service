@@ -5,12 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateKontenAPIRequest;
 use App\Http\Requests\API\UpdateKontenAPIRequest;
 use App\Models\Konten;
+use App\Models\TagKonten;
+use App\Models\Tag;
 use App\Repositories\KontenRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use DB;
 
 /**
  * Class KontenController
@@ -61,9 +64,39 @@ class KontenAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->kontenRepository->pushCriteria(new RequestCriteria($request));
-        $this->kontenRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $kontens = $this->kontenRepository->all();
+        // $this->kontenRepository->pushCriteria(new RequestCriteria($request));
+        // $this->kontenRepository->pushCriteria(new LimitOffsetCriteria($request));
+
+        // $query = DB::table('konten')
+        //             ->join('tagkonten','konten.id','=','tagkonten.idKonten')
+        //             ->join('tag','tagkonten.idTag','=','tag.id')
+        //             ->select('konten.id','judul','deskripsi','idKategori','tag.id','tag')
+        //             ->get();
+        // $fetchdata=[];
+        $fetchdata = DB::table('konten')
+                        ->join('kategorikonten','konten.idKategori','=','kategorikonten.id')
+                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori')
+                        ->get();
+        // dd($fetchdata);
+        for ($i=0;$i <count($fetchdata);$i++)
+        {
+            $tagKonten =DB::table('konten')
+                            ->join('tagkonten','konten.id','=','tagkonten.idKonten')
+                            ->join('tag','tagkonten.idTag','=','tag.id')
+                            ->select('tagkonten.idKonten','tag.tag')
+                            ->get();
+            dd($tagKonten);
+            // $fetchdata[$i]['tag'] = $tagKonten;
+        }
+
+        // $data = [
+        //     "count" =>count($fetchdata),
+        //     "data" => $fetchdata
+        //   ];
+        // $kontens = $this->kontenRepository->all();
+        // $kontens = Konten::join('TagKonten','Konten.id','=','TagKonten.idKonten')
+        //                 ->join('Tag','TagKonten.idTag','=','Tag.id')->get();
+        // dd($kontens);
 
         return $this->sendResponse($kontens->toArray(), 'Kontens retrieved successfully');
     }
