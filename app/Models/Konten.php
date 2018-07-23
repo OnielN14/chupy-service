@@ -31,6 +31,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="integer",
  *          format="int32"
  *      ),
+ *   @SWG\Property(
+ *          property="kategori",
+ *          description="kategori",
+ *          type="string",
+ *      ),
  *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
@@ -60,6 +65,7 @@ class Konten extends Model
         'judul',
         'deskripsi',
         'idKategori',
+        
     ];
 
     /**
@@ -72,12 +78,9 @@ class Konten extends Model
         'judul' => 'string',
         'deskripsi' => 'string',
         'idKategori' => 'integer',
+    
     ];
 
-    // public function tagkonten()
-    // {
-    //     return $this->belongsToMany('App\Tag');
-    // }
 
     /**
      * Validation rules

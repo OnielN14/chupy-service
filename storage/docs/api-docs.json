@@ -1243,6 +1243,10 @@
                     "type": "integer",
                     "format": "int32"
                 },
+                "kategori": {
+                    "description": "kategori",
+                    "type": "string"
+                },
                 "created_at": {
                     "description": "created_at",
                     "type": "string",
@@ -1439,9 +1443,15 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "nama": {
-                    "description": "nama",
-                    "type": "string"
+                "idKonten": {
+                    "description": "idKonten",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "idTag": {
+                    "description": "idTag",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",
