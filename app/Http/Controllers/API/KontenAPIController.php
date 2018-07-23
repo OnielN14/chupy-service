@@ -96,7 +96,7 @@ class KontenAPIController extends AppBaseController
             $fetchdata[$i]['tag'] = $tagKonten;
         
         }
-        dd(  $fetchdata);
+    
         // $kontens = $this->kontenRepository->all();
 
         return $this->sendResponse($fetchdata, 'Kontens retrieved successfully');
@@ -142,10 +142,11 @@ class KontenAPIController extends AppBaseController
      */
     public function store(CreateKontenAPIRequest $request)
     {
-        dd($request);
+        // print_r($request);
+        
         $input = $request->all();
-
-        $kontens = $this->kontenRepository->create($input);
+        dd($input);
+        // $kontens = $this->kontenRepository->create($input);
 
         return $this->sendResponse($kontens->toArray(), 'Konten saved successfully');
     }
@@ -215,7 +216,15 @@ class KontenAPIController extends AppBaseController
                             ->get();
             $tagKonten = json_decode($tagKonten,true);
 
+            $fotoKonten =DB::table('fotokonten')
+            ->join('konten','fotokonten.idKonten','=','konten.id')
+            ->where('fotokonten.idKonten','=',$id)
+            ->select('fotokonten.id','fotokonten.foto','fotokonten.urlfoto')
+            ->get();
 
+            $fotoKonten = json_decode($fotoKonten,true);
+
+            $fetchdata[$i]['foto'] = $fotoKonten;
             $fetchdata[$i]['tag'] = $tagKonten;
         
         }

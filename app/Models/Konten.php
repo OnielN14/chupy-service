@@ -36,6 +36,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="kategori",
  *          type="string",
  *      ),
+ *    @SWG\Property(
+ *          property="foto",
+ *          description="foto",
+ *          type="string",
+ *      ),
+ *    @SWG\Property(
+ *          property="tag",
+ *          description="tag",
+ *          type="string",
+ *      ),
  *      @SWG\Property(
  *          property="created_at",
  *          description="created_at",
