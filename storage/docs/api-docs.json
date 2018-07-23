@@ -1472,6 +1472,14 @@
                     "description": "kategori",
                     "type": "string"
                 },
+                "foto": {
+                    "description": "foto",
+                    "type": "string"
+                },
+                "tag": {
+                    "description": "tag",
+                    "type": "string"
+                },
                 "created_at": {
                     "description": "created_at",
                     "type": "string",
