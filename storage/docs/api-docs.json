@@ -820,6 +820,205 @@
                 }
             }
         },
+        "/petshops": {
+            "get": {
+                "tags": [
+                    "Petshop"
+                ],
+                "summary": "Get a listing of the Petshops.",
+                "description": "Get all Petshops",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Petshop"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Petshop"
+                ],
+                "summary": "Store a newly created Petshop in storage",
+                "description": "Store Petshop",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Petshop that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Petshop"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Petshop"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/petshops/{id}": {
+            "get": {
+                "tags": [
+                    "Petshop"
+                ],
+                "summary": "Display the specified Petshop",
+                "description": "Get Petshop",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Petshop",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Petshop"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Petshop"
+                ],
+                "summary": "Update the specified Petshop in storage",
+                "description": "Update Petshop",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Petshop",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Petshop that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Petshop"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Petshop"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Petshop"
+                ],
+                "summary": "Remove the specified Petshop from storage",
+                "description": "Delete Petshop",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Petshop",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/produks": {
             "get": {
                 "tags": [
@@ -1018,6 +1217,205 @@
                     }
                 }
             }
+        },
+        "/tagKontens": {
+            "get": {
+                "tags": [
+                    "TagKonten"
+                ],
+                "summary": "Get a listing of the TagKontens.",
+                "description": "Get all TagKontens",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/TagKonten"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "TagKonten"
+                ],
+                "summary": "Store a newly created TagKonten in storage",
+                "description": "Store TagKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "TagKonten that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/TagKonten"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/TagKonten"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/tagKontens/{id}": {
+            "get": {
+                "tags": [
+                    "TagKonten"
+                ],
+                "summary": "Display the specified TagKonten",
+                "description": "Get TagKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TagKonten",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/TagKonten"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "TagKonten"
+                ],
+                "summary": "Update the specified TagKonten in storage",
+                "description": "Update TagKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TagKonten",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "TagKonten that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/TagKonten"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/TagKonten"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "TagKonten"
+                ],
+                "summary": "Remove the specified TagKonten from storage",
+                "description": "Delete TagKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of TagKonten",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1070,8 +1468,8 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "idTag": {
-                    "description": "idTag",
+                "kategori": {
+                    "description": "kategori",
                     "type": "string"
                 },
                 "created_at": {
@@ -1171,6 +1569,50 @@
                 }
             }
         },
+        "Petshop": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "description": "nama",
+                    "type": "string"
+                },
+                "deskripsi": {
+                    "description": "deskripsi",
+                    "type": "string"
+                },
+                "alamat": {
+                    "description": "alamat",
+                    "type": "string"
+                },
+                "idPengguna": {
+                    "description": "idPengguna",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "idMap": {
+                    "description": "idMap",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "Produk": {
             "required": [
                 ""
@@ -1201,6 +1643,38 @@
                 },
                 "idKategori": {
                     "description": "idKategori",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "TagKonten": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "idKonten": {
+                    "description": "idKonten",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "idTag": {
+                    "description": "idTag",
                     "type": "integer",
                     "format": "int32"
                 },

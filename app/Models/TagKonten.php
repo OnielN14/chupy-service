@@ -16,9 +16,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nama",
- *          description="nama",
- *          type="string"
+ *          property="idKonten",
+ *          description="idKonten",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *       @SWG\Property(
+ *          property="idTag",
+ *          description="idTag",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -46,7 +53,8 @@ class TagKonten extends Model
 
     public $fillable = [
         'id',
-        'nama'
+        'idKonten',
+        'idTag'
     ];
 
     /**
@@ -56,7 +64,8 @@ class TagKonten extends Model
      */
     protected $casts = [
         'id'=>'integer',
-        'nama' => 'string'
+        'idKonten' => 'integer',
+        'idTag'
     ];
 
     /**
