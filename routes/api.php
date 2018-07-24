@@ -21,6 +21,8 @@ use Illuminate\Http\Request;
 Route::resource('maps', 'MapAPIController');
 
 // Route::resource('penggunas', 'PenggunaAPIController');
+Route::post('/register','PenggunaAPIController@store')->name('register');
+Route::post('/login','PenggunaAPIController@login')->name('login');
 
 Route::resource('produks', 'ProdukAPIController');
 
@@ -29,3 +31,5 @@ Route::resource('kontens', 'KontenAPIController');
 Route::resource('petshops', 'PetshopAPIController');
 
 Route::resource('tagkonten', 'TagKontenAPIController');
+
+Route::resource('kategoriKontens', 'KategoriKontenAPIController');

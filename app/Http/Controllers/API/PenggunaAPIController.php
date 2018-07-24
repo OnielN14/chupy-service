@@ -11,6 +11,9 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use Hash;
+use DB;
+use Mail;
 
 /**
  * Class PenggunaController
@@ -31,26 +34,12 @@ class PenggunaAPIController extends AppBaseController
      * @param Request $request
      * @return Response
      *
-     * @SWG\Post(
-     *      path="/login",
-     *      summary="Login to akses function",
+     * @SWG\Get(
+     *      path="/penggunas",
+     *      summary="Get a listing of the Penggunas",
      *      tags={"Pengguna"},
-     *      description="Login to System",
+     *      description="Get all Penggunas",
      *      produces={"application/json"},
-     *       @SWG\Parameter(
-     *          name="email",
-     *          description="email of User",
-     *          type="string",
-     *          required=true,
-     *          in="path"
-     *      ),
-     *      @SWG\Parameter(
-     *          name="password",
-     *          description="password of User",
-     *          type="string",
-     *          required=true,
-     *          in="path"
-     *      ),
      *      @SWG\Response(
      *          response=200,
      *          description="successful operation",
@@ -75,15 +64,11 @@ class PenggunaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $vendor = Pengguna::where("email", $request->input('email'))->first();
-        //        dd($req,$vendor);
-        if (Hash::check($request->input('password'), $vendor->password) && $vendor) {
-                    $success['token'] = $this->getToken($vendor);
-                    $success['data'] = $vendor;
-                    return response()->json(['success' => $success], 200);
-                } else {
-                    return response()->json(['error' => 'Unauthorised'], 401);
-                }
+        $this->penggunaRepository->pushCriteria(new RequestCriteria($request));
+        $this->penggunaRepository->pushCriteria(new LimitOffsetCriteria($request));
+        $pengguna = $this->penggunaRepository->all();
+
+        return $this->sendResponse($pengguna->toArray(), 'Maps retrieved successfully');
     }
 
     /**
@@ -91,7 +76,7 @@ class PenggunaAPIController extends AppBaseController
      * @return Response
      *
      * @SWG\Post(
-     *      path="/penggunas",
+     *      path="/register",
      *      summary="Store a newly created Pengguna in storage",
      *      tags={"Pengguna"},
      *      description="Store Pengguna",
@@ -126,12 +111,93 @@ class PenggunaAPIController extends AppBaseController
      */
     public function store(CreatePenggunaAPIRequest $request)
     {
+        $_pengguna = new Pengguna();
         $input = $request->all();
+        // dd($input);
+        $_pengguna->name            =$input['name'];
+        $_pengguna->email           =$input['email'];
+        $_pengguna->jeniskelamin    =$input['jeniskelamin'];
+        $_pengguna->password        =Hash::make($input['password']);
+        $isHakakses = DB::table('hakakses')->where('levelAkses','=',$input['idHakakses'])->first();
+        $_pengguna->idHakakses = $isHakakses->id;
 
-        $penggunas = $this->penggunaRepository->create($input);
+        $data['name']    = $input['name'];
+        $data['welcome'] = 'selamat datang';
+        $data['email']   = $input['email'];
+        Mail::send('mail', $data, function($message) use ($data)
+        {
+            $message->from('maulvi67@gmail.com', "Admin Chupy");
+            $message->subject("Thank you for joining us");
+            $message->to($data['email']);
+        });
 
-        return $this->sendResponse($penggunas->toArray(), 'Pengguna saved successfully');
+        $_pengguna->save();
+        // $_pengguna->notelepon       =$input['notelepon'] 
+        // $penggunas = $this->penggunaRepository->create($input);
+        // print_r($_pengguna);
+        return $this->sendResponse($_pengguna->toArray(), 'Registrasi Berhasil');
     }
+
+
+   /**
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Post(
+     *      path="/login",
+     *      summary="Login to akses function ",
+     *      tags={"Pengguna"},
+     *      description="Login Pengguna ",
+     *      produces={"application/json"},
+     * 
+     *  *    @SWG\Parameter(
+     *          name="email",
+     *          description="email of User",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *  @SWG\Parameter(
+     *          name="password",
+     *          description="password of User",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Pengguna")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function login(Request $req) {
+        $vendor = Pengguna::where('email','=', $req->input('email'))->first();
+    // dd($req->input('email'));
+        if (Hash::check($req->input('password'), $vendor->password) && $vendor->email) {
+            // $success['token'] = $this->getToken($vendor);
+            $success['data'] = $vendor;
+            return response()->json(['success' => $success,'message'=>'Anda Berhasil Login'], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorised'], 401);
+        }
+    }
+
 
     /**
      * @param int $id

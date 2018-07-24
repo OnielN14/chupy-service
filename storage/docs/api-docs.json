@@ -603,13 +603,89 @@
                 }
             }
         },
+        "/penggunas": {
+            "get": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Get a listing of the Penggunas",
+                "description": "Get all Penggunas",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Pengguna"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Pengguna"
+                ],
+                "summary": "Store a newly created Pengguna in storage",
+                "description": "Store Pengguna",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Pengguna that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/Pengguna"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/Pengguna"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "tags": [
                     "Pengguna"
                 ],
-                "summary": "Login to akses function",
-                "description": "Login to System",
+                "summary": "Login to akses function ",
+                "description": "Login Pengguna ",
                 "produces": [
                     "application/json"
                 ],
@@ -642,48 +718,6 @@
                                     "items": {
                                         "$ref": "#/definitions/Pengguna"
                                     }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/penggunas": {
-            "post": {
-                "tags": [
-                    "Pengguna"
-                ],
-                "summary": "Store a newly created Pengguna in storage",
-                "description": "Store Pengguna",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "Pengguna that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/Pengguna"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/Pengguna"
                                 },
                                 "message": {
                                     "type": "string"
@@ -1507,28 +1541,12 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "nama": {
-                    "description": "nama",
-                    "type": "string"
-                },
-                "deskripsi": {
-                    "description": "deskripsi",
-                    "type": "string"
-                },
                 "longitude": {
                     "description": "longitude",
                     "type": "string"
                 },
                 "latitude": {
                     "description": "latitude",
-                    "type": "string"
-                },
-                "foto": {
-                    "description": "foto",
-                    "type": "string"
-                },
-                "url_foto": {
-                    "description": "url_foto",
                     "type": "string"
                 },
                 "created_at": {
@@ -1561,9 +1579,31 @@
                     "description": "email",
                     "type": "string"
                 },
+                "jeniskelamin": {
+                    "description": "jeniskelamin",
+                    "type": "string"
+                },
+                "notelepon": {
+                    "description": "notelepon",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "foto": {
+                    "description": "foto",
+                    "type": "string"
+                },
+                "urlfoto": {
+                    "description": "urlfoto",
+                    "type": "string"
+                },
                 "password": {
                     "description": "password",
                     "type": "string"
+                },
+                "idHakakses": {
+                    "description": "idHakakses",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",
@@ -1597,6 +1637,14 @@
                 },
                 "alamat": {
                     "description": "alamat",
+                    "type": "string"
+                },
+                "foto": {
+                    "description": "foto",
+                    "type": "string"
+                },
+                "urlfoto": {
+                    "description": "urlfoto",
                     "type": "string"
                 },
                 "idPengguna": {
