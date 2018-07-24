@@ -26,10 +26,37 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *          description="email",
  *          type="string"
  *      ),
+ *  *      @SWG\Property(
+ *          property="jeniskelamin",
+ *          description="jeniskelamin",
+ *          type="string"
+ *      ),
+ *       @SWG\Property(
+ *          property="notelepon",
+ *          description="notelepon",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
+ *          property="foto",
+ *          description="foto",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="urlfoto",
+ *          description="urlfoto",
+ *          type="string"
+ *      ),
  *      @SWG\Property(
  *          property="password",
  *          description="password",
  *          type="string"
+ *      ),
+ * *       @SWG\Property(
+ *          property="idHakakses",
+ *          description="idHakakses",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -58,7 +85,12 @@ class Pengguna extends Authenticatable
     public $fillable = [
         'name',
         'email',
-        'password'
+        'jeniskelamin',
+        'notelepon',
+        'foto',
+        'urlfoto',
+        'password',
+        'idHakakses'
     ];
 
     /**
@@ -69,7 +101,12 @@ class Pengguna extends Authenticatable
     protected $casts = [
         'name' => 'string',
         'email' => 'string',
-        'password' => 'string'
+        'jeniskelamin'=>'string',
+        'notelepon'=>'integer',
+        'foto'=>'string',
+        'urlfoto'=>'string',
+        'password' => 'string',
+        'idHakakases'=>'integer'
     ];
 
     /**
@@ -78,8 +115,7 @@ class Pengguna extends Authenticatable
      * @var array
      */
     public static $rules = [
-        'name' => 'required',
-        'email' => 'email'
+   
     ];
 
     
