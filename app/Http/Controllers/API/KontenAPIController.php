@@ -5,12 +5,15 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreateKontenAPIRequest;
 use App\Http\Requests\API\UpdateKontenAPIRequest;
 use App\Models\Konten;
+use App\Models\TagKonten;
+use App\Models\Tag;
 use App\Repositories\KontenRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use DB;
 
 /**
  * Class KontenController
@@ -61,11 +64,42 @@ class KontenAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->kontenRepository->pushCriteria(new RequestCriteria($request));
-        $this->kontenRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $kontens = $this->kontenRepository->all();
+        // dd($request);
+        // $this->kontenRepository->pushCriteria(new RequestCriteria($request));
+        // $this->kontenRepository->pushCriteria(new LimitOffsetCriteria($request));
 
-        return $this->sendResponse($kontens->toArray(), 'Kontens retrieved successfully');
+        $fetchdata = DB::table('konten')
+                        ->join('kategorikonten','konten.idKategori','=','kategorikonten.id')
+                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori')
+                        ->get();
+        $fetchdata = json_decode($fetchdata,true);
+        
+        for ($i=0;$i <count($fetchdata);$i++)
+        {
+            $tagKonten =DB::table('konten')
+                            ->join('tagkonten','konten.id','=','tagkonten.idKonten')
+                            ->join('tag','tagkonten.idTag','=','tag.id')
+                            ->where('tagkonten.idKonten','=',$fetchdata[$i]['id'])
+                            ->select('tag.id','tag.tag')
+                            ->get();
+            $tagKonten = json_decode($tagKonten,true);
+
+            $fotoKonten =DB::table('fotokonten')
+                        ->join('konten','fotokonten.idKonten','=','konten.id')
+                        ->where('fotokonten.idKonten','=',$fetchdata[$i]['id'])
+                        ->select('fotokonten.id','fotokonten.foto','fotokonten.urlfoto')
+                        ->get();
+            $fotoKonten = json_decode($fotoKonten,true);
+            // dd($fotoKonten);
+
+            $fetchdata[$i]['foto'] = $fotoKonten;
+            $fetchdata[$i]['tag'] = $tagKonten;
+        
+        }
+    
+        // $kontens = $this->kontenRepository->all();
+
+        return $this->sendResponse($fetchdata, 'Kontens retrieved successfully');
     }
 
     /**
@@ -108,11 +142,57 @@ class KontenAPIController extends AppBaseController
      */
     public function store(CreateKontenAPIRequest $request)
     {
-        $input = $request->all();
 
-        $kontens = $this->kontenRepository->create($input);
+        $_konten = new Konten();
+        $_tag = new Tag();
+        $_tagKonten = new TagKonten();
+        
+        // $imageKonten = $request->file('foto');
+        // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
+        // dd($locImage);
+        // $imageName =$imageKonten->getClientOriginalName();
+        if ($request->hasFile('foto')) {
+            $imageKonten  = $request->file('foto');
+            dd($imageKonten);
+            // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
+            // dd($locImage);
+        }
+    
+        $kategoriKonten = strtolower($request->post('kategori'));
+        $isKategori     = DB::table('kategorikonten')
+                            ->where('kategori', '=', $kategoriKonten)
+                            ->first();
+                       
+        if ($isKategori ==! null) {
+            $idKategori = $isKategori->id;
+        }
 
-        return $this->sendResponse($kontens->toArray(), 'Konten saved successfully');
+        $list_tag = $request->post('tag');
+        foreach($list_tag as $tag)
+        {
+            
+            $isTag = Tag::where('tag', '=', strtolower($tag['tag']))->first();
+            if ($isTag === null) {
+               $_tag->tag = $tag['tag'];
+               $_tag->save();
+               $idTag = $_tag->id;
+             }
+             else{
+                $idTag = $isTag['id'];
+             }
+        }
+
+        $_konten->judul         = $request->post('judul');
+        $_konten->deskripsi     = $request->post('deskripsi');
+        $_konten->idKategori    = $idKategori;
+        $_konten->statuspost    = $request->post('statuspost');
+    
+        
+        // $input = $request->all();
+        // dd($input);
+        // $kontens = $this->kontenRepository->create($input);
+
+        // return $this->sendResponse($kontens->toArray(), 'Konten saved successfully');
     }
 
     /**
@@ -156,13 +236,44 @@ class KontenAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Konten $konten */
-        $konten = $this->kontenRepository->findWithoutFail($id);
+        // $konten = $this->kontenRepository->findWithoutFail($id);
 
-        if (empty($konten)) {
+        
+        $fetchdata = DB::table('konten')
+                        ->join('kategorikonten','konten.idKategori','=','kategorikonten.id')
+                        ->where('konten.id','=',$id)
+                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori')
+                        ->get();
+        $fetchdata = json_decode($fetchdata,true);
+        // dd($fetchdata);
+        if (empty($fetchdata)) {
             return $this->sendError('Konten not found');
         }
 
-        return $this->sendResponse($konten->toArray(), 'Konten retrieved successfully');
+        for ($i=0;$i <count($fetchdata);$i++)
+        {
+            $tagKonten =DB::table('konten')
+                            ->join('tagkonten','konten.id','=','tagkonten.idKonten')
+                            ->join('tag','tagkonten.idTag','=','tag.id')
+                            ->where('tagkonten.idKonten','=',$id)
+                            ->select('tag.id','tag.tag')
+                            ->get();
+            $tagKonten = json_decode($tagKonten,true);
+
+            $fotoKonten =DB::table('fotokonten')
+            ->join('konten','fotokonten.idKonten','=','konten.id')
+            ->where('fotokonten.idKonten','=',$id)
+            ->select('fotokonten.id','fotokonten.foto','fotokonten.urlfoto')
+            ->get();
+
+            $fotoKonten = json_decode($fotoKonten,true);
+
+            $fetchdata[$i]['foto'] = $fotoKonten;
+            $fetchdata[$i]['tag'] = $tagKonten;
+        
+        }
+        // dd($fetchdata);
+        return $this->sendResponse($fetchdata, 'Konten retrieved successfully');
     }
 
     /**

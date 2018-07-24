@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Konten",
+ *      definition="Petshop",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="judul",
- *          description="judul",
+ *          property="nama",
+ *          description="nama",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -26,25 +26,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="idKategori",
- *          description="idKategori",
+ *          property="alamat",
+ *          description="alamat",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="idPengguna",
+ *          description="idPengguna",
  *          type="integer",
  *          format="int32"
  *      ),
- *   @SWG\Property(
- *          property="kategori",
- *          description="kategori",
- *          type="string",
- *      ),
- *    @SWG\Property(
- *          property="foto",
- *          description="foto",
- *          type="string",
- *      ),
- *    @SWG\Property(
- *          property="tag",
- *          description="tag",
- *          type="string",
+ *      @SWG\Property(
+ *          property="idMap",
+ *          description="idMap",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -60,11 +56,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Konten extends Model
+class Petshop extends Model
 {
     // use SoftDeletes;
 
-    public $table = 'konten';
+    public $table = 'petshop';
     
 
     // protected $dates = ['deleted_at'];
@@ -72,10 +68,11 @@ class Konten extends Model
 
     public $fillable = [
         'id',
-        'judul',
+        'nama',
         'deskripsi',
-        'idKategori',
-        
+        'alamat',
+        'idPengguna',
+        'idMap'
     ];
 
     /**
@@ -84,13 +81,13 @@ class Konten extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'judul' => 'string',
+        'id'=>'integer',
+        'nama' => 'string',
         'deskripsi' => 'string',
-        'idKategori' => 'integer',
-    
+        'alamat' => 'string',
+        'idPengguna' => 'integer',
+        'idMap' => 'integer'
     ];
-
 
     /**
      * Validation rules

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="Konten",
+ *      definition="TagKonten",
  *      required={""},
  *      @SWG\Property(
  *          property="id",
@@ -16,35 +16,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="judul",
- *          description="judul",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="deskripsi",
- *          description="deskripsi",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="idKategori",
- *          description="idKategori",
+ *          property="idKonten",
+ *          description="idKonten",
  *          type="integer",
  *          format="int32"
  *      ),
- *   @SWG\Property(
- *          property="kategori",
- *          description="kategori",
- *          type="string",
- *      ),
- *    @SWG\Property(
- *          property="foto",
- *          description="foto",
- *          type="string",
- *      ),
- *    @SWG\Property(
- *          property="tag",
- *          description="tag",
- *          type="string",
+ *       @SWG\Property(
+ *          property="idTag",
+ *          description="idTag",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -60,11 +41,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class Konten extends Model
+class TagKonten extends Model
 {
     // use SoftDeletes;
 
-    public $table = 'konten';
+    public $table = 'tagkonten';
     
 
     // protected $dates = ['deleted_at'];
@@ -72,10 +53,8 @@ class Konten extends Model
 
     public $fillable = [
         'id',
-        'judul',
-        'deskripsi',
-        'idKategori',
-        
+        'idKonten',
+        'idTag'
     ];
 
     /**
@@ -84,13 +63,10 @@ class Konten extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
-        'judul' => 'string',
-        'deskripsi' => 'string',
-        'idKategori' => 'integer',
-    
+        'id'=>'integer',
+        'idKonten' => 'integer',
+        'idTag'
     ];
-
 
     /**
      * Validation rules
