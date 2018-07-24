@@ -30,4 +30,4 @@ Route::resource('petshops', 'PetshopAPIController');
 
 Route::resource('tagkonten', 'TagKontenAPIController');
 
-Route::resource('kategori_kontens', 'KategoriKontenAPIController');
+Route::resource('kategoriKontens', 'KategoriKontenAPIController');
