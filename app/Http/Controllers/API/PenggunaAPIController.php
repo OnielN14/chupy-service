@@ -138,6 +138,67 @@ class PenggunaAPIController extends AppBaseController
         return $this->sendResponse($_pengguna->toArray(), 'Registrasi Berhasil');
     }
 
+
+   /**
+     * @param Request $request
+     * @return Response
+     *
+     * @SWG\Post(
+     *      path="/login",
+     *      summary="Login to akses function ",
+     *      tags={"Pengguna"},
+     *      description="Login Pengguna ",
+     *      produces={"application/json"},
+     * 
+     *  *    @SWG\Parameter(
+     *          name="email",
+     *          description="email of User",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *  @SWG\Parameter(
+     *          name="password",
+     *          description="password of User",
+     *          type="string",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  type="array",
+     *                  @SWG\Items(ref="#/definitions/Pengguna")
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function login(Request $req) {
+        $vendor = Pengguna::where('email','=', $req->input('email'))->first();
+    // dd($req->input('email'));
+        if (Hash::check($req->input('password'), $vendor->password) && $vendor->email) {
+            // $success['token'] = $this->getToken($vendor);
+            $success['data'] = $vendor;
+            return response()->json(['success' => $success,'message'=>'Anda Berhasil Login'], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorised'], 401);
+        }
+    }
+
+
     /**
      * @param int $id
      * @return Response
