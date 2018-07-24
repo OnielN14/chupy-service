@@ -16,16 +16,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="nama",
- *          description="nama",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="deskripsi",
- *          description="deskripsi",
- *          type="string"
- *      ),
- *      @SWG\Property(
  *          property="longitude",
  *          description="longitude",
  *          type="string"
@@ -33,16 +23,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="latitude",
  *          description="latitude",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="foto",
- *          description="foto",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="url_foto",
- *          description="url_foto",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -64,18 +44,15 @@ class Map extends Model
     // use SoftDeletes;
 
     public $table = 'map';
-    
+    public $timestamps = false;
 
     // protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'nama',
-        'deskripsi',
+        'id',
         'longitude',
         'latitude',
-        'foto',
-        'url_foto'
     ];
 
     /**
@@ -84,12 +61,9 @@ class Map extends Model
      * @var array
      */
     protected $casts = [
-        'nama' => 'string',
-        'deskripsi' => 'string',
+        'id'=>'integer',
         'longitude' => 'string',
         'latitude' => 'string',
-        'foto' => 'string',
-        'url_foto' => 'string'
     ];
 
     /**
@@ -98,12 +72,7 @@ class Map extends Model
      * @var array
      */
     public static $rules = [
-        'nama' => 'required',
-        'deskripsi' => 'required',
-        'longitude' => 'required',
-        'latitude' => 'required',
-        'foto' => 'required',
-        'url_foto' => 'required'
+
     ];
 
     
