@@ -75,15 +75,7 @@ class PenggunaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $vendor = Pengguna::where("email", $request->input('email'))->first();
-        //        dd($req,$vendor);
-        if (Hash::check($request->input('password'), $vendor->password) && $vendor) {
-                    $success['token'] = $this->getToken($vendor);
-                    $success['data'] = $vendor;
-                    return response()->json(['success' => $success], 200);
-                } else {
-                    return response()->json(['error' => 'Unauthorised'], 401);
-                }
+        
     }
 
     /**
