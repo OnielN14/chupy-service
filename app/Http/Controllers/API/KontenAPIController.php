@@ -142,13 +142,57 @@ class KontenAPIController extends AppBaseController
      */
     public function store(CreateKontenAPIRequest $request)
     {
-        // print_r($request);
+
+        $_konten = new Konten();
+        $_tag = new Tag();
+        $_tagKonten = new TagKonten();
         
-        $input = $request->all();
-        dd($input);
+        // $imageKonten = $request->file('foto');
+        // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
+        // dd($locImage);
+        // $imageName =$imageKonten->getClientOriginalName();
+        if ($request->hasFile('foto')) {
+            $imageKonten  = $request->file('foto');
+            dd($imageKonten);
+            // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
+            // dd($locImage);
+        }
+    
+        $kategoriKonten = strtolower($request->post('kategori'));
+        $isKategori     = DB::table('kategorikonten')
+                            ->where('kategori', '=', $kategoriKonten)
+                            ->first();
+                       
+        if ($isKategori ==! null) {
+            $idKategori = $isKategori->id;
+        }
+
+        $list_tag = $request->post('tag');
+        foreach($list_tag as $tag)
+        {
+            
+            $isTag = Tag::where('tag', '=', strtolower($tag['tag']))->first();
+            if ($isTag === null) {
+               $_tag->tag = $tag['tag'];
+               $_tag->save();
+               $idTag = $_tag->id;
+             }
+             else{
+                $idTag = $isTag['id'];
+             }
+        }
+
+        $_konten->judul         = $request->post('judul');
+        $_konten->deskripsi     = $request->post('deskripsi');
+        $_konten->idKategori    = $idKategori;
+        $_konten->statuspost    = $request->post('statuspost');
+    
+        
+        // $input = $request->all();
+        // dd($input);
         // $kontens = $this->kontenRepository->create($input);
 
-        return $this->sendResponse($kontens->toArray(), 'Konten saved successfully');
+        // return $this->sendResponse($kontens->toArray(), 'Konten saved successfully');
     }
 
     /**
