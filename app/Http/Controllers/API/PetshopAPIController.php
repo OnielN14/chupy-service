@@ -11,7 +11,7 @@ use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
-
+use DB;
 /**
  * Class PetshopController
  * @package App\Http\Controllers\API
@@ -61,11 +61,18 @@ class PetshopAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->petshopRepository->pushCriteria(new RequestCriteria($request));
-        $this->petshopRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $petshops = $this->petshopRepository->all();
+        // $this->petshopRepository->pushCriteria(new RequestCriteria($request));
+        // $this->petshopRepository->pushCriteria(new LimitOffsetCriteria($request));
+        // $petshops = $this->petshopRepository->all();
+        $fetchdata = DB::table('pengguna')
+                ->join('petshop','petshop.idPengguna','=','pengguna.id')
+                ->join('map','petshop.idMap','=','map.id')
+                ->select('petshop.id','petshop.nama','petshop.deskripsi','petshop.alamat','petshop.foto','petshop.urlfoto','pengguna.name as pemilik','pengguna.jeniskelamin','petshop.idMap','map.longitude','map.latitude')
+                ->get();
+            $fetchdata = json_decode($fetchdata,true);
 
-        return $this->sendResponse($petshops->toArray(), 'Petshops retrieved successfully');
+
+        return $this->sendResponse($fetchdata, 'Petshops retrieved successfully');
     }
 
     /**
