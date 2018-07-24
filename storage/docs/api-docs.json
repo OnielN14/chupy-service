@@ -603,31 +603,15 @@
                 }
             }
         },
-        "/login": {
-            "post": {
+        "/penggunas": {
+            "get": {
                 "tags": [
                     "Pengguna"
                 ],
-                "summary": "Login to akses function",
-                "description": "Login to System",
+                "summary": "Get a listing of the Penggunas",
+                "description": "Get all Penggunas",
                 "produces": [
                     "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "path",
-                        "description": "email of User",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "password",
-                        "in": "path",
-                        "description": "password of User",
-                        "required": true,
-                        "type": "string"
-                    }
                 ],
                 "responses": {
                     "200": {
@@ -653,7 +637,7 @@
                 }
             }
         },
-        "/penggunas": {
+        "/register": {
             "post": {
                 "tags": [
                     "Pengguna"
@@ -1507,28 +1491,12 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "nama": {
-                    "description": "nama",
-                    "type": "string"
-                },
-                "deskripsi": {
-                    "description": "deskripsi",
-                    "type": "string"
-                },
                 "longitude": {
                     "description": "longitude",
                     "type": "string"
                 },
                 "latitude": {
                     "description": "latitude",
-                    "type": "string"
-                },
-                "foto": {
-                    "description": "foto",
-                    "type": "string"
-                },
-                "url_foto": {
-                    "description": "url_foto",
                     "type": "string"
                 },
                 "created_at": {
@@ -1561,9 +1529,31 @@
                     "description": "email",
                     "type": "string"
                 },
+                "jeniskelamin": {
+                    "description": "jeniskelamin",
+                    "type": "string"
+                },
+                "notelepon": {
+                    "description": "notelepon",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "foto": {
+                    "description": "foto",
+                    "type": "string"
+                },
+                "urlfoto": {
+                    "description": "urlfoto",
+                    "type": "string"
+                },
                 "password": {
                     "description": "password",
                     "type": "string"
+                },
+                "idHakakses": {
+                    "description": "idHakakses",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "created_at": {
                     "description": "created_at",
