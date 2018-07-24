@@ -70,7 +70,7 @@ class KontenAPIController extends AppBaseController
 
         $fetchdata = DB::table('konten')
                         ->join('kategorikonten','konten.idKategori','=','kategorikonten.id')
-                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori')
+                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori','konten.tanggalPost')
                         ->get();
         $fetchdata = json_decode($fetchdata,true);
         
@@ -147,7 +147,7 @@ class KontenAPIController extends AppBaseController
         $_tag = new Tag();
         $_tagKonten = new TagKonten();
         
-        // $imageKonten = $request->file('foto');
+        $imageKonten = $request->file('foto');
         // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
         // dd($locImage);
         // $imageName =$imageKonten->getClientOriginalName();
@@ -242,7 +242,7 @@ class KontenAPIController extends AppBaseController
         $fetchdata = DB::table('konten')
                         ->join('kategorikonten','konten.idKategori','=','kategorikonten.id')
                         ->where('konten.id','=',$id)
-                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori')
+                        ->select('konten.id','konten.judul','konten.deskripsi','konten.idKategori','kategorikonten.kategori','konten.tanggalPost')
                         ->get();
         $fetchdata = json_decode($fetchdata,true);
         // dd($fetchdata);
