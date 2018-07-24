@@ -17,13 +17,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      ),
  *      @SWG\Property(
  *          property="longitude",
- *          description="longitude",
- *          type="string"
+ *           description="id",
+ *          type="integer",
+ *          format="int64"
  *      ),
  *      @SWG\Property(
  *          property="latitude",
- *          description="latitude",
- *          type="string"
+ *         description="id",
+ *          type="integer",
+ *          format="int64"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -62,8 +64,8 @@ class Map extends Model
      */
     protected $casts = [
         'id'=>'integer',
-        'longitude' => 'string',
-        'latitude' => 'string',
+        'longitude' => 'integer',
+        'latitude' => 'integer',
     ];
 
     /**
