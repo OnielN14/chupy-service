@@ -18,14 +18,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="longitude",
  *           description="id",
- *          type="integer",
- *          format="int64"
+ *          type="number",
+ *          format="double"
  *      ),
  *      @SWG\Property(
  *          property="latitude",
  *         description="id",
- *          type="integer",
- *          format="int64"
+ *          type="number",
+ *          format="double"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
