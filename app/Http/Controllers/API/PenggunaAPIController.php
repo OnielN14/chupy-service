@@ -75,7 +75,11 @@ class PenggunaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        
+        $this->penggunaRepository->pushCriteria(new RequestCriteria($request));
+        $this->penggunaRepository->pushCriteria(new LimitOffsetCriteria($request));
+        $pengguna = $this->penggunaRepository->all();
+
+        return $this->sendResponse($pengguna->toArray(), 'Maps retrieved successfully');
     }
 
     /**
