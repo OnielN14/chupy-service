@@ -30,13 +30,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="alamat",
  *          type="string"
  *      ),
- *      @SWG\Property(
+ *  *      @SWG\Property(
+ *          property="foto",
+ *          description="foto",
+ *          type="string"
+ *      ),
+ *  *      @SWG\Property(
+ *          property="urlfoto",
+ *          description="urlfoto",
+ *          type="string"
+ *      ),
+ *     @SWG\Property(
  *          property="idPengguna",
  *          description="idPengguna",
  *          type="integer",
  *          format="int32"
  *      ),
- *      @SWG\Property(
+ *     @SWG\Property(
  *          property="idMap",
  *          description="idMap",
  *          type="integer",
@@ -71,6 +81,8 @@ class Petshop extends Model
         'nama',
         'deskripsi',
         'alamat',
+        'foto',
+        'urlfoto',
         'idPengguna',
         'idMap'
     ];
@@ -85,6 +97,8 @@ class Petshop extends Model
         'nama' => 'string',
         'deskripsi' => 'string',
         'alamat' => 'string',
+        'foto'=>'string',
+        'urlfoto'=>'string',
         'idPengguna' => 'integer',
         'idMap' => 'integer'
     ];

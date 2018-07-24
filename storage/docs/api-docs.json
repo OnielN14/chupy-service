@@ -1599,6 +1599,14 @@
                     "description": "alamat",
                     "type": "string"
                 },
+                "foto": {
+                    "description": "foto",
+                    "type": "string"
+                },
+                "urlfoto": {
+                    "description": "urlfoto",
+                    "type": "string"
+                },
                 "idPengguna": {
                     "description": "idPengguna",
                     "type": "integer",
