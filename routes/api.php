@@ -25,3 +25,5 @@ Route::resource('maps', 'MapAPIController');
 Route::resource('produks', 'ProdukAPIController');
 
 Route::resource('kontens', 'KontenAPIController');
+
+Route::resource('kategori_kontens', 'KategoriKontenAPIController');

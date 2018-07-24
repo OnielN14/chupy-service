@@ -6,6 +6,205 @@
     },
     "basePath": "/api",
     "paths": {
+        "/kategoriKontens": {
+            "get": {
+                "tags": [
+                    "KategoriKonten"
+                ],
+                "summary": "Get a listing of the KategoriKontens.",
+                "description": "Get all KategoriKontens",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/KategoriKonten"
+                                    }
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "KategoriKonten"
+                ],
+                "summary": "Store a newly created KategoriKonten in storage",
+                "description": "Store KategoriKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "KategoriKonten that should be stored",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/KategoriKonten"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/KategoriKonten"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/kategoriKontens/{id}": {
+            "get": {
+                "tags": [
+                    "KategoriKonten"
+                ],
+                "summary": "Display the specified KategoriKonten",
+                "description": "Get KategoriKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of KategoriKonten",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/KategoriKonten"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "KategoriKonten"
+                ],
+                "summary": "Update the specified KategoriKonten in storage",
+                "description": "Update KategoriKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of KategoriKonten",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "KategoriKonten that should be updated",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/KategoriKonten"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "$ref": "#/definitions/KategoriKonten"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "KategoriKonten"
+                ],
+                "summary": "Remove the specified KategoriKonten from storage",
+                "description": "Delete KategoriKonten",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of KategoriKonten",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
         "/kontens": {
             "get": {
                 "tags": [
@@ -822,6 +1021,32 @@
         }
     },
     "definitions": {
+        "KategoriKonten": {
+            "required": [
+                ""
+            ],
+            "properties": {
+                "id": {
+                    "description": "id",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "nama": {
+                    "description": "nama",
+                    "type": "string"
+                },
+                "created_at": {
+                    "description": "created_at",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "description": "updated_at",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
         "Konten": {
             "required": [
                 ""
@@ -844,6 +1069,10 @@
                     "description": "idKategori",
                     "type": "integer",
                     "format": "int32"
+                },
+                "idTag": {
+                    "description": "idTag",
+                    "type": "string"
                 },
                 "created_at": {
                     "description": "created_at",
