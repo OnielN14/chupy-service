@@ -190,7 +190,6 @@ class PenggunaAPIController extends AppBaseController
         $vendor = Pengguna::where('email','=', $req->input('email'))->first();
     // dd($req->input('email'));
         if (Hash::check($req->input('password'), $vendor->password) && $vendor->email) {
-            // $success['token'] = $this->getToken($vendor);
             $success['data'] = $vendor;
             return response()->json(['success' => $success,'message'=>'Anda Berhasil Login'], 200);
         } else {
