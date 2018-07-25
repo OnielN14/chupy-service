@@ -1,0 +1,57 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-pengaturan-header h1,
+.chupy-pengaturan-header h3 {
+    font-weight: 300;
+}
+
+.img-holder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#gambarProfile{
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+#ubah-foto-area input[type="file"]{
+  display: none;
+}
+
+.chupy-form-profil {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.chupy-form-sandi {
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.form-sandi-center {
+    text-align: center;
+}
+
+#form-edit-password {
+    display: inline-block;
+}
+
+.font-card-header {
+    font-weight: 300;
+}
+
+#btn-profile {
+    margin-top: 32px;
+}
+
+.font-card-input {
+    font-weight: bold;
+}
+
+.card-profile {
+    padding: 30px;
+}

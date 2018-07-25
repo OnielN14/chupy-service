@@ -1,0 +1,108 @@
+:root {
+  --side-nav-size: 250px;
+  --chupy-admin-card-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.chupy-admin .chupy-admin-aside {
+  background-color: var(--color-gray);
+  top: var(--navbar-size);
+  position: fixed;
+  left: 0;
+  height: 100vh;
+  width: var(--side-nav-size);
+}
+
+.chupy-admin-aside .nav-item .nav-link:focus,
+.chupy-admin-aside .nav-item .nav-link:hover, .chupy-admin-aside .nav-item .nav-link.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  font-weight: bold;
+}
+
+.chupy-admin-aside .nav-item .nav-link {
+  color: white;
+  border-bottom: 1px solid gray;
+}
+
+.chupy-admin-aside .nav-item * {
+  color: inherit;
+}
+
+.chupy-admin.toggled {
+  padding-left: var(--side-nav-size);
+}
+
+.chupy-admin #page-wrapper {
+  border-left: 1px solid gray;
+}
+
+.chupy-admin #page-wrapper>main {
+  padding-top: var(--navbar-size);
+  min-height: 100vh;
+  position: relative;
+}
+
+.chupy-admin #page-wrapper>main .chupy-alert.fixed {
+  /* box-shadow: var(--navbar-shadow);
+  position: fixed; */
+  left: 57%!important;
+  /* transform: translateX(-50%);
+  margin-top: 15px;
+  z-index: 99; */
+}
+
+.chupy-admin #page-wrapper .container, .chupy-admin #page-wrapper .container-fluid {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.chupy-admin-dashboard-header {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 16px;
+}
+
+.chupy-admin-dashboard-header * {
+  color: inherit;
+}
+
+a.chupy-admin-dashboard-card {
+  transition: box-shadow var(--transition), background-color var(--transition);
+}
+
+a.chupy-admin-dashboard-card:hover {
+  text-decoration: none;
+  box-shadow: var(--chupy-admin-card-shadow);
+}
+
+.chupy-admin-dashboard-card .data-name-indicator {
+  font-weight: 300;
+}
+
+.chupy-admin-panel {
+  margin-bottom: 16px;
+}
+
+#logout.chupy-dropdown {
+  right: 0px;
+  left: auto;
+}
+
+footer {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: var(--color-primary) !important;
+}
+
+footer p {
+  font-weight: bold;
+  color: white;
+  font-size: 1.25em;
+}
+
+.chupy-image-preview img{
+  height: 100px;
+  object-fit: cover;
+  margin-right:2px;
+  margin-bottom:2px;
+}

@@ -1,0 +1,31 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-pembayaran-header h1,
+.chupy-pembayaran-header h5 {
+    font-weight: 300;
+}
+
+h6 {
+    font-weight: 300;
+}
+
+.card-pembeli {
+    margin: 30px;
+}
+
+.foto-pembeli {
+    width: 50px;
+    height: 50px;
+}
+
+.img-produk {
+    width: 50px;
+    height: 50px;
+}
+
+
+/* .card-header-pembeli {
+    text-align: center
+} */

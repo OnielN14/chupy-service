@@ -1,0 +1,20 @@
+/*
+
+  Chupy Link Style
+
+*/
+a{
+  color:var(--color-primary);
+}
+
+a, a:hover, a:active, a:link, a:visited{
+  text-decoration: none;
+}
+
+a:hover{
+  font-weight: bold;
+}
+
+a:visited{
+  color:var(--color-primary);
+}

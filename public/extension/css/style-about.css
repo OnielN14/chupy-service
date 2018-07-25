@@ -1,0 +1,22 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-page-header h1,
+.chupy-page-header h5,
+.chupy-team-description *,
+.chupy-profile-team * {
+    font-weight: 300;
+}
+
+.chupy-team-description {
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+.chupy-profile-team img {
+    height: 115px;
+    width: 115px;
+    object-fit: contain;
+    margin-bottom: 32px!important;
+}

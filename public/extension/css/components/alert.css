@@ -1,0 +1,12 @@
+.chupy-alert.fixed {
+  box-shadow: var(--navbar-shadow);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 15px;
+  z-index: 99;
+}
+
+.chupy-alert.fixed:not(.show){
+  z-index: -1;
+}

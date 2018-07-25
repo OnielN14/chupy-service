@@ -1,0 +1,57 @@
+.chupy-footer>section:nth-child(1) {
+  background-color: var(--color-primary);
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.chupy-footer>section:nth-child(1) a>p {
+  padding: 0 24px;
+}
+
+a.chupy-footer-brand:hover{
+  text-decoration: none;
+}
+
+.chupy-footer .chupy-footer-brand>p {
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  font-size: 2em;
+  font-weight: 300;
+  color: white;
+}
+
+.chupy-footer-description{
+  padding-left: 39px;
+  padding-right: 39px;
+}
+
+.chupy-footer-description p{
+  font-size: 1.2em;
+  font-weight: 300;
+  word-spacing: 2px;
+}
+
+.chupy-footer-description h2{
+  font-weight: 300;
+}
+
+.chupy-footer-description span{
+  display: inline-block;
+  min-width: 100px;
+}
+
+.chupy-footer-description p, .chupy-footer-description h2{
+  color:white;
+}
+
+.chupy-footer>section:nth-child(2) {
+  background-color: var(--color-primary-dark);
+  padding: 16px 0;
+}
+
+.chupy-footer>section:nth-child(2) p {
+  color: white;
+  margin: 0;
+  font-weight: 300;
+  font-size: 1em;
+}

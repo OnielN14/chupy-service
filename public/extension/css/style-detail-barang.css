@@ -1,0 +1,39 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-detail-header h1,
+.chupy-detail-header h5 {
+    font-weight: 300;
+}
+
+.img-detail-barang {
+    height: 200px;
+    width: 300px;
+}
+
+h5,
+h6 {
+    font-weight: 300;
+}
+
+.chupy-detail-card {
+    padding-bottom: 30px;
+}
+
+.chupy-detail-card a.card,
+.chupy-detail-card .card {
+    transition: box-shadow 0.3s ease;
+}
+
+.chupy-detail-card a.card:hover,
+.chupy-detail-card .card:hover,
+.chupy-detail-card a.card:focus,
+.chupy-detail-card .card:focus {
+    text-decoration: none;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.chupy-detail-barang {
+    margin-top: 200px;
+}

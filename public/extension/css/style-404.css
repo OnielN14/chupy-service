@@ -1,0 +1,40 @@
+header {
+    margin-bottom: 32px;
+}
+
+main {
+    padding-top: 32px;
+    min-height: 100vh;
+    margin-bottom: 64px;
+}
+
+p {
+    font-weight: 300;
+    margin: 0;
+}
+
+footer {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: var(--color-primary);
+}
+
+.chupy-error-code {
+    font-weight: 300;
+    font-size: 4rem;
+}
+
+.chupy-error-message {
+    font-weight: 300;
+    font-size: 4rem;
+}
+
+.chupy-error-description {
+    font-size: 2rem;
+}
+
+footer p {
+    font-weight: bold;
+    color: white;
+    font-size: 1.25em;
+}

@@ -1,0 +1,13 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-wishlist-header h1,
+.chupy-wishlist-header h5 {
+    font-weight: 300;
+}
+
+.chupy-card-image {
+    height: 200px;
+    width: 300px;
+}

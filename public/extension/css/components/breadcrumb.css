@@ -1,0 +1,15 @@
+.chupy-breadcrumb{
+  background: none;
+}
+
+.chupy-breadcrumb .breadcrumb-item{
+  color: rgba(0,0,0,0.7);
+}
+
+.chupy-breadcrumb .breadcrumb-item.active{
+  color: var(--color-primary)!important;
+}
+
+.chupy-breadcrumb a{
+  color:inherit;
+}

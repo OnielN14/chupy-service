@@ -16,13 +16,15 @@
 
 Auth::routes();
 Route::middleware('auth')->group(function(){
-    Route::get('/', 'DashboardController@index')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/map','MapController@index')->name('map');
     Route::get('/map/getMap','MapController@getMap')->name('map.getMap');
 });
 
 
-
+Route::get('/',function(){
+    return view('landingpage');
+});
 
 
 // Route::resource('penggunas', 'PenggunaController');

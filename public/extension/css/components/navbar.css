@@ -1,0 +1,92 @@
+/*
+  navbar tweaks
+*/
+
+:root{
+  --navbar-size:80px;
+  --navbar-shadow: 0px 5px 10px 1px rgba(0,0,0,0.2);
+}
+
+
+.chupy-navbar.navbar{
+  min-height: var(--navbar-size);
+  background-color: white!important;
+  box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.2)
+}
+
+.chupy-navbar.navbar .navbar-brand{
+  position: relative;
+  height: var(--navbar-size);
+}
+
+.chupy-navbar.navbar .navbar-brand>img{
+  height: 100%;
+}
+
+.chupy-navbar.navbar,
+.chupy-navbar.navbar .navbar-brand{
+  padding-top:0;
+  padding-bottom: 0;
+}
+
+
+.chupy-navbar.navbar-toggler{
+  border-color:rgba(0,0,0,0);
+}
+
+.chupy-navbar .nav-link:hover,
+.chupy-navbar .nav-link:focus,
+.chupy-navbar > .navbar-nav .active > .nav-link,
+.chupy-navbar .navbar-nav .show > .nav-link,
+.chupy-navbar > .navbar-nav .active > .dropdown > .nav-link{
+  background-color: var(--color-primary);
+  color: white!important;
+}
+
+@media screen and (min-width:992px){
+  .chupy-navbar .nav-link{
+    display: flex;
+    align-items:center;
+    height: var(--navbar-size);
+  }
+
+  .chupy-navbar .nav-link{
+    font-size: 1em;
+    padding:0px 16px!important;
+  }
+}
+
+@media screen and (max-width:991px){
+  .chupy-navbar.navbar{
+      padding-left:0;
+      padding-right:0;
+  }
+
+  .chupy-navbar.nav{
+    transition: opacity 0.2s ease;
+    opacity: 0;
+    height: calc(100vh - var(--navbar-size));
+  }
+  .chupy-navbar.nav.show{
+    opacity: 1;
+  }
+
+  .chupy-navbar.nav > .navbar-nav{
+    width: 100%;
+  }
+
+  .chupy-navbar .nav-link{
+    font-size: 1.5em;
+  }
+
+  .chupy-navbar > .navbar-nav .active > .nav-link{
+    font-size: 2em;
+  }
+
+  .chupy-navbar .nav-link{
+    /* font-size: 1em; */
+    padding-left:16px!important;
+    padding-right:16px!important;
+  }
+
+}

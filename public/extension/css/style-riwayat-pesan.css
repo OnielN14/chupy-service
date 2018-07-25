@@ -1,0 +1,21 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-keranjang-header h1,
+.chupy-keranjang-header h5 {
+    font-weight: 300;
+}
+
+.btn-bayar {
+    width: 300px;
+}
+
+.chupy-card-image {
+    height: 200px;
+    width: 300px;
+}
+
+.btn-riwayat-pesan {
+    width: 80%;
+}

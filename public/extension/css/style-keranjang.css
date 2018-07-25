@@ -1,0 +1,49 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-keranjang-header h1,
+.chupy-keranjang-header h5 {
+    font-weight: 300;
+}
+
+.chupy-card-image {
+    height: 200px;
+    width: 300px;
+}
+
+.chupy-keranjang-card a.card,
+.chupy-keranjang-card .card {
+    transition: box-shadow 0.3s ease;
+}
+
+.btn-keranjang {
+    width: 80%;
+}
+
+.btn-keranjang-hapus {
+    width: 80%;
+    background-color: white;
+}
+
+.card-block {
+    padding-top: 30px;
+}
+
+hr.divider {
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+h4 {
+    font-weight: 300;
+}
+
+.chupy-keranjang-bayar {
+    margin-bottom: 100px;
+}
+
+.chupy-keranjang-bayar .btn-beli {
+    width: 20%;
+    margin-top: 15px;
+}

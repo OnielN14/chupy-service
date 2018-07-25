@@ -1,0 +1,59 @@
+.chupy-message{
+  transition : opacity var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:1px solid var(--color-primary);
+  background-color: white;
+  color:var(--color-primary);
+  opacity: 0;
+}
+
+.chupy-message.hide{
+  z-index: -1
+}
+
+.chupy-message.show{
+  opacity: 1;
+  z-index: 1;
+}
+
+.chupy-message *{
+  color:inherit!important;
+}
+
+.chupy-message p{
+  text-align: center;
+}
+
+.chupy-message .chupy-message-body{
+    padding:16px;
+}
+
+.chupy-message:not(.error) .chupy-message-error-text{
+  display: none;
+}
+
+.chupy-message.loading p.chupy-message-text:not(.chupy-message-loading-text),
+.chupy-message.error p.chupy-message-text:not(.chupy-message-loading-text){
+  display: none;
+}
+
+.chupy-message:not(.loading) .chupy-message-loading-text{
+  display: none;
+}
+
+.chupy-message.dark{
+  border-color: white;
+  background-color: var(--color-primary);
+  color:white;
+}
+
+/* use this in element with relative parent  */
+.chupy-message.cover-message{
+  position: absolute;
+  top: 0px;
+  bottom:0px;
+  left: 0px;
+  right:0px;
+}

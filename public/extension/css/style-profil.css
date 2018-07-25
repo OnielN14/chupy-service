@@ -1,0 +1,55 @@
+main {
+    padding-top: calc(var(--navbar-size) + 16px);
+}
+
+.chupy-profil-header h1,
+.chupy-profil-header h5 {
+    font-weight: 300;
+}
+
+.chupy-profil img.chupy-profile-image{
+  object-fit: cover;
+  height: 200px!important;
+}
+
+.chupy-card-image {
+    height: 150px;
+    width: 200px;
+    margin-left: 30px;
+}
+
+.text-akun {
+    margin-left: 30px;
+    margin-top: 15px;
+    font-weight: 300;
+}
+
+.btn-profil-ubah {
+    width: 300px;
+    background-color: white;
+}
+
+.chupy-riwayat-pembelian {
+    margin-bottom: 32px;
+}
+
+.btn-riwayat-pembelian a {
+    width: 150px;
+}
+
+.font-riwayat-pembelian {
+    font-weight: 300;
+}
+
+.data-pembelian {
+    margin-bottom: 20px;
+}
+
+.card-pembelian {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.chupy.chupy-product-pagination a {
+    color: var(--color-primary);
+}

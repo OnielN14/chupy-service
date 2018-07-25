@@ -1,0 +1,103 @@
+#chupy-hero {
+    height: 100vh;
+    padding-top: var(--navbar-size);
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('../img/chupy_logo_colorful.png') no-repeat top;
+    background-size: cover;
+}
+
+#chupy-hero .chupy-welcome-text {
+    text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: 300;
+}
+
+#chupy-hero footer {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+#chupy-hero footer a {
+    font-size: 1.75em;
+    font-weight: 300;
+    color: white;
+}
+
+#chupy-hero footer a:hover {
+    text-decoration: none;
+}
+
+#chupy-hero+section {
+    padding-top: calc(var(--navbar-size) + 16px);
+    padding-bottom: calc(var(--navbar-size) + 16px);
+}
+
+#chupy-hero+section>header {
+    margin-bottom: 32px;
+}
+
+a.chupy-category-option {
+    box-sizing: content-box;
+    border: 2px solid transparent;
+}
+
+a.chupy-category-option:hover {
+    text-decoration: none;
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.chupy-category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chupy-category-option {
+    position: relative;
+    max-width: 300px;
+    padding: 16px;
+    margin: 0px auto;
+    display: block;
+    text-align: center;
+}
+
+.chupy-category-option img {
+    height: 100px;
+    margin-bottom: 16px;
+}
+
+.chupy-category-option p {
+    text-align: center;
+    /* font-weight: 300; */
+    font-size: 1.25em;
+    margin: 0px;
+}
+
+.chupy-divider {
+    font-weight: 300;
+    color: var(--color-gray);
+}
+
+@media screen and (max-width:991px) {
+    .chupy-category-option {
+        padding: 0;
+    }
+    .chupy-category-option img {
+        height: 80px;
+    }
+    .chupy-divider {
+        margin-top: 32px;
+        margin-bottom: 32px;
+        font-weight: 300;
+        color: var(--color-gray);
+    }
+}
