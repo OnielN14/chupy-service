@@ -14,6 +14,7 @@ use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use DB;
+use Carbon\Carbon;
 
 /**
  * Class KontenController
@@ -87,7 +88,7 @@ class KontenAPIController extends AppBaseController
             $fotoKonten =DB::table('fotokonten')
                         ->join('konten','fotokonten.idKonten','=','konten.id')
                         ->where('fotokonten.idKonten','=',$fetchdata[$i]['id'])
-                        ->select('fotokonten.id','fotokonten.foto','fotokonten.urlfoto')
+                        ->select('fotokonten.id','fotokonten.foto')
                         ->get();
             $fotoKonten = json_decode($fotoKonten,true);
             // dd($fotoKonten);
@@ -141,21 +142,20 @@ class KontenAPIController extends AppBaseController
      * )
      */
     public function store(CreateKontenAPIRequest $request)
-    {
+    {   
+        // $cek = $request->file('foto');
+        // $cek = $cek->getClientOriginalName();
+        // dd($cek);
 
         $_konten = new Konten();
-        $_tag = new Tag();
-        $_tagKonten = new TagKonten();
         
-        $imageKonten = $request->file('foto');
-        // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
-        // dd($locImage);
-        // $imageName =$imageKonten->getClientOriginalName();
         if ($request->hasFile('foto')) {
             $imageKonten  = $request->file('foto');
-            dd($imageKonten);
-            // $locImage = $imageKonten->move(storage_path().'/public/img/img_konten'.$imageKonten);
-            // dd($locImage);
+            $imageName =$imageKonten->getClientOriginalName();
+            $imageKonten->move(public_path().'/storage/img/img_konten/',$imageName);
+            $pathImage = '/storage/img/img_konten/'.$imageName;
+            // dd($pathImage);
+            
         }
     
         $kategoriKonten = strtolower($request->post('kategori'));
@@ -167,32 +167,53 @@ class KontenAPIController extends AppBaseController
             $idKategori = $isKategori->id;
         }
 
-        $list_tag = $request->post('tag');
-        foreach($list_tag as $tag)
-        {
-            
-            $isTag = Tag::where('tag', '=', strtolower($tag['tag']))->first();
-            if ($isTag === null) {
-               $_tag->tag = $tag['tag'];
-               $_tag->save();
-               $idTag = $_tag->id;
-             }
-             else{
-                $idTag = $isTag['id'];
-             }
-        }
 
         $_konten->judul         = $request->post('judul');
         $_konten->deskripsi     = $request->post('deskripsi');
         $_konten->idKategori    = $idKategori;
-        $_konten->statuspost    = $request->post('statuspost');
-    
-        
-        // $input = $request->all();
-        // dd($input);
-        // $kontens = $this->kontenRepository->create($input);
+        $_konten->statusPost    = $request->post('statusPost');
+        $_konten->tanggalPost   = Carbon::now();
+        $_konten->save();
+        $idKonten =$_konten->id;
 
-        // return $this->sendResponse($kontens->toArray(), 'Konten saved successfully');
+        DB::table('fotokonten')->insert([
+            'foto'=>$pathImage,
+            'idKonten'=>$idKonten
+        ]);
+
+        $list_tag = $request->post('tag');
+        // dd($list_tag);
+        foreach($list_tag as $tag)
+        {
+            $_tag = new Tag();
+            $_tagKonten = new TagKonten();
+            
+            $isTag = Tag::where('tag', '=', strtolower($tag))->first();
+
+            if ($isTag === null) {
+               $_tag->tag = $tag;
+               $_tag->save();
+               $idTag = $_tag->id;
+             }
+             else{
+                $idTag = $isTag->id;
+             }
+
+             $_tagKonten->idKonten  =$idKonten;
+             $_tagKonten->idTag     =$idTag;
+             $_tagKonten->save();
+        }
+
+
+        $data = [
+            'judul'=>$_konten->judul,
+            'deskripsi'=>$_konten->deskripsi,
+            'kategori_artikel'=>$isKategori->kategori,
+            'foto'=>$pathImage,
+            'tag'=>$list_tag
+        ];
+
+        return $this->sendResponse($data, 'Konten saved successfully');
     }
 
     /**
@@ -263,7 +284,7 @@ class KontenAPIController extends AppBaseController
             $fotoKonten =DB::table('fotokonten')
             ->join('konten','fotokonten.idKonten','=','konten.id')
             ->where('fotokonten.idKonten','=',$id)
-            ->select('fotokonten.id','fotokonten.foto','fotokonten.urlfoto')
+            ->select('fotokonten.id','fotokonten.foto')
             ->get();
 
             $fotoKonten = json_decode($fotoKonten,true);
@@ -324,18 +345,18 @@ class KontenAPIController extends AppBaseController
      */
     public function update($id, UpdateKontenAPIRequest $request)
     {
-        $input = $request->all();
+        // $input = $request->all();
 
-        /** @var Konten $konten */
-        $konten = $this->kontenRepository->findWithoutFail($id);
+        // /** @var Konten $konten */
+        // $konten = $this->kontenRepository->findWithoutFail($id);
 
-        if (empty($konten)) {
-            return $this->sendError('Konten not found');
-        }
+        // if (empty($konten)) {
+        //     return $this->sendError('Konten not found');
+        // }
 
-        $konten = $this->kontenRepository->update($input, $id);
+        // $konten = $this->kontenRepository->update($input, $id);
 
-        return $this->sendResponse($konten->toArray(), 'Konten updated successfully');
+        // return $this->sendResponse($konten->toArray(), 'Konten updated successfully');
     }
 
     /**
@@ -359,7 +380,7 @@ class KontenAPIController extends AppBaseController
      *          response=200,
      *          description="successful operation",
      *          @SWG\Schema(
-     *              type="object",
+     *             type="object",
      *              @SWG\Property(
      *                  property="success",
      *                  type="boolean"
@@ -379,12 +400,23 @@ class KontenAPIController extends AppBaseController
     public function destroy($id)
     {
         /** @var Konten $konten */
+
+        $image = DB::table('fotokonten')->where('idKonten', $id)->first();
+        $pathImage = public_path().$image->foto;
+        DB::table('fotokonten')->where('idKonten', $id)->delete();
+
+        DB::table('tagkonten')
+            ->where('idKonten','=',$id)
+            ->delete();
         $konten = $this->kontenRepository->findWithoutFail($id);
 
         if (empty($konten)) {
             return $this->sendError('Konten not found');
         }
 
+        if (file_exists($pathImage)) {
+            unlink($pathImage);
+        }
         $konten->delete();
 
         return $this->sendResponse($id, 'Konten deleted successfully');

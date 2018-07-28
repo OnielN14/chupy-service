@@ -67,7 +67,7 @@ class PetshopAPIController extends AppBaseController
         $fetchdata = DB::table('pengguna')
                 ->join('petshop','petshop.idPengguna','=','pengguna.id')
                 ->join('map','petshop.idMap','=','map.id')
-                ->select('petshop.id','petshop.nama','petshop.deskripsi','petshop.alamat','petshop.foto','petshop.urlfoto','pengguna.name as pemilik','pengguna.jeniskelamin','pengguna.notelepon','petshop.idMap','map.longitude','map.latitude')
+                ->select('petshop.id','petshop.nama','petshop.deskripsi','petshop.alamat','petshop.foto','pengguna.name as pemilik','pengguna.jeniskelamin','pengguna.notelepon','petshop.idMap','map.longitude','map.latitude')
                 ->get();
             $fetchdata = json_decode($fetchdata,true);
 
