@@ -66,7 +66,7 @@
     </div>
 </div>
 <!-- END CONTENT -->
-@include('modal.modal-map')
+@include('modal.modal-pengguna')
 @endsection
 
 @section('js')
@@ -87,6 +87,105 @@
                 {data: 'options', name: 'options'},
             ]
         });
+
+        $('form#form-pengguna-new').submit(function(e) {
+            tambahPengguna();
+            return false
+          })
     });
+
+    function tambahPengguna()
+    {
+        let form = document.querySelector('form#form-pengguna-new')
+        let data = new FormData(form)
+
+        $('#modal-pengguna').modal('toggle')
+        $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+          url: '/pengguna/addPengguna',
+          method: 'post',
+          dataType: 'json',
+          contentType: false,
+          processData: false,
+          data: data,
+          beforeSend: function(response) {
+            $('#chupy-msg').removeClass('show')
+            $('#chupy-msg').removeClass('alert-warning')
+            $('#chupy-msg').removeClass('alert-primary')
+            $('#chupy-msg').removeClass('alert-danger')
+            $('#chupy-msg').removeClass('alert-success')
+      
+            $('#chupy-msg').find('strong').text('Harap tunggu')
+            $('#chupy-msg').find('strong + span').text('Permintaan sedang diproses..')
+      
+            $('#chupy-msg').addClass('alert-primary')
+            $('#chupy-msg').addClass('show')
+          }
+        }).done(function(response) {
+            $('#chupy-msg').addClass('alert-success')
+        
+            $('#chupy-msg').find('strong').text('Sukses')
+            $('#chupy-msg').find('strong + span').text('Produk berhasil ditambahkan.')
+            $('#chupy-msg').addClass('show')
+            setTimeout(function() {
+              location.reload();
+            }, 1000)
+          }).fail(function(response) {
+            $('#chupy-msg').addClass('alert-danger')
+        
+            $('#chupy-msg').find('strong').text('Gagal')
+            $('#chupy-msg').find('strong + span').text('Terjadi kesalahan.')
+        
+            $('#chupy-msg').addClass('show')
+          })
+    }
+
+    function delete_data(id)
+    {
+        
+        $.ajax({
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+        url: '/pengguna/deletePengguna/'+id,
+        method: 'delete',
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: id,
+          beforeSend: function(response) {
+            $('#chupy-msg').removeClass('show')
+            $('#chupy-msg').removeClass('alert-warning')
+            $('#chupy-msg').removeClass('alert-primary')
+            $('#chupy-msg').removeClass('alert-danger')
+            $('#chupy-msg').removeClass('alert-success')
+      
+            $('#chupy-msg').find('strong').text('Harap tunggu')
+            $('#chupy-msg').find('strong + span').text('Permintaan sedang diproses..')
+      
+            $('#chupy-msg').addClass('alert-primary')
+            $('#chupy-msg').addClass('show')
+          }
+        }).done(function(response) {
+          $('#chupy-msg').addClass('alert-success')
+      
+          $('#chupy-msg').find('strong').text('Sukses')
+          $('#chupy-msg').find('strong + span').text('Produk berhasil dihapus.')
+          $('#chupy-msg').addClass('show')
+          setTimeout(function() {
+            location.reload();
+          }, 1000)
+      
+        }).fail(function(response) {
+          $('#chupy-msg').addClass('alert-danger')
+      
+          $('#chupy-msg').find('strong').text('Gagal')
+          $('#chupy-msg').find('strong + span').text('Terjadi kesalahan.')
+      
+          $('#chupy-msg').addClass('show')
+        })
+    }
 </script>
 @endsection

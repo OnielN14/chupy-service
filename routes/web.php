@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function(){
 
     Route::get('/pengguna','PenggunaController@index')->name('pengguna');
     Route::get('/pengguna/getPengguna','PenggunaController@getPengguna')->name('getPengguna');
+    Route::post('/pengguna/addPengguna','PenggunaController@addPengguna')->name('addPengguna');
+    Route::delete('/pengguna/deletePengguna/{id}','PenggunaController@deletePengguna')->name('deletePengguna');
 });
 
 
