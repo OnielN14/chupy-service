@@ -148,8 +148,6 @@ class KontenAPIController extends AppBaseController
         // dd($cek);
 
         $_konten = new Konten();
-       
-      
         
         if ($request->hasFile('foto')) {
             $imageKonten  = $request->file('foto');
