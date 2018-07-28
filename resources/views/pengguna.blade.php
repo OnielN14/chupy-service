@@ -74,17 +74,19 @@
 <script type="text/javascript">
     $(document).ready(function(){
        
-        $('#mapTable').DataTable({
+        $('#penggunaTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('map.getPengguna') }}",
+            ajax: "{{ route('getPengguna') }}",
             columns: [
-                {data: 'nama', name: 'nama'},
+                {data: 'name', name: 'name'},
                 {data: 'email', name: 'email'},
-                {data: 'noHp', name: 'noHp'},
-                {data: 'hakAkses', name: 'hakAkses'},
+                {data: 'notelepon', name: 'notelepon'},
+                {data: 'levelAkses', name: 'levelAkses'},
                 {data: 'foto', name: 'foto'},
                 {data: 'options', name: 'options'},
             ]
         });
     });
+</script>
+@endsection

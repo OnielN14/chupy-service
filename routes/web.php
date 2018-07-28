@@ -18,9 +18,10 @@ Auth::routes();
 Route::middleware('auth')->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard');
     Route::get('/map','MapController@index')->name('map');
-    Route::get('/map/getMap','MapController@getMap')->name('map.getMap');
+    Route::get('/map/getMap','MapController@getMap')->name('getMap');
 
     Route::get('/pengguna','PenggunaController@index')->name('pengguna');
+    Route::get('/pengguna/getPengguna','PenggunaController@getPengguna')->name('getPengguna');
 });
 
 

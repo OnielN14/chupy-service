@@ -50,9 +50,6 @@
                         <table class="table table-striped table-bordered table-hover" id="mapTable">
                         <thead>
                         <tr>
-                            <th>Nama Petshop</th>
-                            <th>Deskripsi</th>
-                            <th>Foto</th>
                             <th>Longitude</th>
                             <th>Latitude</th>  
                             <th>Options</th>
@@ -83,11 +80,8 @@
         $('#mapTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('map.getMap') }}",
+            ajax: "{{ route('getMap') }}",
             columns: [
-                {data: 'nama', name: 'nama'},
-                {data: 'deskripsi', name: 'deskripsi'},
-                {data: 'foto', name: 'foto'},
                 {data: 'longitude', name: 'longitude'},
                 {data: 'latitude', name: 'latitude'},
                 {data: 'options', name: 'options'},
