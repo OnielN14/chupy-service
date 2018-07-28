@@ -1542,12 +1542,14 @@
                     "format": "int32"
                 },
                 "longitude": {
-                    "description": "longitude",
-                    "type": "string"
+                    "description": "id",
+                    "type": "number",
+                    "format": "double"
                 },
                 "latitude": {
-                    "description": "latitude",
-                    "type": "string"
+                    "description": "id",
+                    "type": "number",
+                    "format": "double"
                 },
                 "created_at": {
                     "description": "created_at",

@@ -65,6 +65,7 @@ class Konten extends Model
     // use SoftDeletes;
 
     public $table = 'konten';
+    public $timestamps = false;
     
 
     // protected $dates = ['deleted_at'];
