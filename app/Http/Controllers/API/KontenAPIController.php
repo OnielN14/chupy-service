@@ -380,7 +380,7 @@ class KontenAPIController extends AppBaseController
      *          response=200,
      *          description="successful operation",
      *          @SWG\Schema(
-     *              type="object",
+     *             type="object",
      *              @SWG\Property(
      *                  property="success",
      *                  type="boolean"

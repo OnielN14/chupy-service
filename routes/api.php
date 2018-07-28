@@ -20,9 +20,10 @@ use Illuminate\Http\Request;
 
 Route::resource('maps', 'MapAPIController');
 
-Route::resource('penggunas', 'PenggunaAPIController');
+// Route::resource('penggunas', 'PenggunaAPIController');
 Route::post('/register','PenggunaAPIController@store')->name('register');
 Route::post('/login','PenggunaAPIController@login')->name('login');
+Route::post('/edit-profil/{id}','PenggunaAPIController@update')->name('update');
 
 Route::resource('produks', 'ProdukAPIController');
 
