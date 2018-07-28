@@ -43,6 +43,12 @@
                 <span class="selected"></span>
                 </a>
             </li>   
+            <li class=" {{ Request::segment(1) === 'pengguna' ? 'active' : null }} ">
+                <a href="{{ route('pengguna') }}">
+                <i class="icon-user"></i>
+                <span class="title">Pengguna</span>
+                </a>
+            </li>   
             <li>
                 <a href="javascript:;">
                 <i class="icon-pencil"></i>
