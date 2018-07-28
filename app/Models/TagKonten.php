@@ -46,7 +46,7 @@ class TagKonten extends Model
     // use SoftDeletes;
 
     public $table = 'tagkonten';
-    
+    public $timestamps = false;
 
     // protected $dates = ['deleted_at'];
 
