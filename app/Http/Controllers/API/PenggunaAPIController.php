@@ -64,11 +64,12 @@ class PenggunaAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $this->penggunaRepository->pushCriteria(new RequestCriteria($request));
-        $this->penggunaRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $pengguna = $this->penggunaRepository->all();
+        return abort(404);
+        // $this->penggunaRepository->pushCriteria(new RequestCriteria($request));
+        // $this->penggunaRepository->pushCriteria(new LimitOffsetCriteria($request));
+        // $pengguna = $this->penggunaRepository->all();
 
-        return $this->sendResponse($pengguna->toArray(), 'Maps retrieved successfully');
+        // return $this->sendResponse($pengguna->toArray(), 'Maps retrieved successfully');
     }
 
     /**
@@ -239,13 +240,14 @@ class PenggunaAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Pengguna $pengguna */
-        $pengguna = $this->penggunaRepository->findWithoutFail($id);
+        return abort(404);
+        // $pengguna = $this->penggunaRepository->findWithoutFail($id);
 
-        if (empty($pengguna)) {
-            return $this->sendError('Pengguna not found');
-        }
+        // if (empty($pengguna)) {
+        //     return $this->sendError('Pengguna not found');
+        // }
 
-        return $this->sendResponse($pengguna->toArray(), 'Pengguna retrieved successfully');
+        // return $this->sendResponse($pengguna->toArray(), 'Pengguna retrieved successfully');
     }
 
     /**
@@ -296,16 +298,34 @@ class PenggunaAPIController extends AppBaseController
      */
     public function update($id, UpdatePenggunaAPIRequest $request)
     {
-        $input = $request->all();
-
+        // $input = $request->all();
+        // dd($input);
+        $image = DB::table('pengguna')->where('id', $id)->first();
+        if ($image === null) {
+            $pathImage = public_path().$image->foto;
+        
+            if (file_exists($pathImage)) {
+                unlink($pathImage);
+         }
+         }
+        if ($request->hasFile('foto')) {
+            $imagePengguna  = $request->file('foto');
+            $imageName =$imagePengguna->getClientOriginalName();
+            $imagePengguna->move(public_path().'/storage/img/img_pengguna/',$imageName);
+            $pathImage = '/storage/img/img_pengguna/'.$imageName;
+            // dd($pathImage);
+            
+        }
+        $nama       =$request->input('name');
+        $email      =$request->input('email');
+        $notelepon  =$request->input('notelepon');
         /** @var Pengguna $pengguna */
         $pengguna = $this->penggunaRepository->findWithoutFail($id);
-
-        if (empty($pengguna)) {
-            return $this->sendError('Pengguna not found');
-        }
-
-        $pengguna = $this->penggunaRepository->update($input, $id);
+        $pengguna->name         =$nama;
+        $pengguna->email        =$email;
+        $pengguna->notelepon    =$notelepon;
+        $pengguna->foto         =$pathImage;
+        $pengguna->save();
 
         return $this->sendResponse($pengguna->toArray(), 'Pengguna updated successfully');
     }
@@ -351,14 +371,15 @@ class PenggunaAPIController extends AppBaseController
     public function destroy($id)
     {
         /** @var Pengguna $pengguna */
-        $pengguna = $this->penggunaRepository->findWithoutFail($id);
+        return abort(404);
+        // $pengguna = $this->penggunaRepository->findWithoutFail($id);
 
-        if (empty($pengguna)) {
-            return $this->sendError('Pengguna not found');
-        }
+        // if (empty($pengguna)) {
+        //     return $this->sendError('Pengguna not found');
+        // }
 
-        $pengguna->delete();
+        // $pengguna->delete();
 
-        return $this->sendResponse($id, 'Pengguna deleted successfully');
+        // return $this->sendResponse($id, 'Pengguna deleted successfully');
     }
 }

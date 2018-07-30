@@ -380,7 +380,7 @@ class KontenAPIController extends AppBaseController
      *          response=200,
      *          description="successful operation",
      *          @SWG\Schema(
-     *              type="object",
+     *             type="object",
      *              @SWG\Property(
      *                  property="success",
      *                  type="boolean"
@@ -400,12 +400,23 @@ class KontenAPIController extends AppBaseController
     public function destroy($id)
     {
         /** @var Konten $konten */
+
+        $image = DB::table('fotokonten')->where('idKonten', $id)->first();
+        $pathImage = public_path().$image->foto;
+        DB::table('fotokonten')->where('idKonten', $id)->delete();
+
+        DB::table('tagkonten')
+            ->where('idKonten','=',$id)
+            ->delete();
         $konten = $this->kontenRepository->findWithoutFail($id);
 
         if (empty($konten)) {
             return $this->sendError('Konten not found');
         }
 
+        if (file_exists($pathImage)) {
+            unlink($pathImage);
+        }
         $konten->delete();
 
         return $this->sendResponse($id, 'Konten deleted successfully');

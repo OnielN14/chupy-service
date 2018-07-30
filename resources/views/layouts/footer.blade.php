@@ -25,12 +25,35 @@
     <script src="{{ asset('global/scripts/metronic.js') }}" type="text/javascript"></script>
     <script src="{{ asset('admin/layout/scripts/layout.js') }}" type="text/javascript"></script>
     <script src="{{ asset('admin/layout/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/chupy-alert-behaviour.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('js/chupy-message-behaviour.js') }}" type="text/javascript" ></script>
 
     <!-- END PAGE LEVEL SCRIPTS -->
     <script>
         jQuery(document).ready(function() {    
            Metronic.init(); // init metronic core componets
            Layout.init(); // init layout
+
+           $(function(){
+            $("[data-hide]").on("click", function(){
+                $(this).closest("." + $(this).attr("data-hide")).removeClass("show");
+            });
+          });
          
         });
+
+        let button = document.querySelectorAll('.chupy-message button[data-close]')
+
+        button.forEach(function(item){
+        item.addEventListener("click", chupyMessageClose)
+        })
+
+        function chupyMessageClose(){
+        let target = this.getAttribute('data-close')
+        let targetElement = document.querySelector('#'+target)
+        targetElement.classList.toggle('show', false)
+        setTimeout(function(){
+            targetElement.classList.toggle('hide',true)
+        }, 500)
+        }
     </script>
