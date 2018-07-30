@@ -72,6 +72,7 @@
 @section('js')
 
 <script type="text/javascript">
+    let penggunaId = [];
     $(document).ready(function(){
        
         $('#penggunaTable').DataTable({
@@ -92,7 +93,21 @@
             tambahPengguna();
             return false
           })
-    });
+
+          
+        $('#hapus-modal-pengguna').on('show.bs.modal', function(event) {
+            let button = $(event.relatedTarget)
+            let penggunaId = button.data('pengguna-id')
+            let modal = $(this)
+        
+            let data = penggunaData.find(function(item) {
+            return item.id == penggunaId
+            })
+        
+            modal.find('#hapus-modal-nama-pengguna').text(data.nama)
+            modal.find('#hapus-modal-confirm').attr('data-id', data.id)
+        })
+            });
 
     function tambahPengguna()
     {
@@ -186,6 +201,51 @@
       
           $('#chupy-msg').addClass('show')
         })
+    }
+
+    function edit_data(id)
+    {
+        $.ajax({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+            url: '/pengguna/editPengguna/'+id,
+            method: 'put',
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            data: id,
+              beforeSend: function(response) {
+                $('#chupy-msg').removeClass('show')
+                $('#chupy-msg').removeClass('alert-warning')
+                $('#chupy-msg').removeClass('alert-primary')
+                $('#chupy-msg').removeClass('alert-danger')
+                $('#chupy-msg').removeClass('alert-success')
+          
+                $('#chupy-msg').find('strong').text('Harap tunggu')
+                $('#chupy-msg').find('strong + span').text('Permintaan sedang diproses..')
+          
+                $('#chupy-msg').addClass('alert-primary')
+                $('#chupy-msg').addClass('show')
+              }
+            }).done(function(response) {
+              $('#chupy-msg').addClass('alert-success')
+          
+              $('#chupy-msg').find('strong').text('Sukses')
+              $('#chupy-msg').find('strong + span').text('Produk berhasil dihapus.')
+              $('#chupy-msg').addClass('show')
+              setTimeout(function() {
+                location.reload();
+              }, 1000)
+          
+            }).fail(function(response) {
+              $('#chupy-msg').addClass('alert-danger')
+          
+              $('#chupy-msg').find('strong').text('Gagal')
+              $('#chupy-msg').find('strong + span').text('Terjadi kesalahan.')
+          
+              $('#chupy-msg').addClass('show')
+            })
     }
 </script>
 @endsection

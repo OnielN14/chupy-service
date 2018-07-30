@@ -53,3 +53,27 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<!-- Modal Hapus -->
+
+<div class="modal fade" tabindex="-1" id="hapus-modal-pengguna">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="hapus-modal-title">Hapus Pengguna</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Pengguna dengan nama
+          <span style="font-weight:bold" id="hapus-modal-nama-pengguna"></span> akan dihapus?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button class="btn btn-primary" data-dismiss="modal" onclick="deletePengguna(this)" id="hapus-modal-confirm">Hapus Pengguna</button>
+      </div>
+    </div>
+  </div>
+</div>

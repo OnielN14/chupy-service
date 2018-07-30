@@ -10,18 +10,19 @@
     <title>Chuppy | @yield('title')</title>
 </head>
 
-<div id="chupy-msg" class="chupy-alert fixed alert alert-warning alert-dismissible fade" role="alert">
-    <strong>Holy guacamole!</strong>
-    <span> You should check in on some of those fields below.</span>
-    <button type="button" class="close" data-hide="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
 
 <body class="page-md page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo ">
 
     @include('layouts.header') @yield('css')
     <div class="page-container">
+        
+    <div id="chupy-msg" class="chupy-alert fixed alert alert-warning alert-dismissible fade" role="alert">
+            <strong>Holy guacamole!</strong>
+            <span> You should check in on some of those fields below.</span>
+            <button type="button" class="close" data-hide="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         @include('layouts.sidebar') @yield('content')
     </div>
     @include('layouts.footer') @yield('js')

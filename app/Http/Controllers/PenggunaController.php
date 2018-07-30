@@ -28,7 +28,7 @@ class PenggunaController extends Controller
                     return '<img src="'.$url.'" alt="Pengguna Image" height="50" width="50"> ';
                 })
                ->addColumn('options', function($query){
-                   return '<button type="button" class="btn btn-circle btn-xs blue" onclick="edit_data('."'".$query->id."'".')">Edit</button> <button type="button" class="btn btn-circle btn-xs red" onclick="delete_data('."'".$query->id."'".')">Delete</button>';
+                   return '<button type="button" class="btn btn-circle btn-xs blue" onclick="edit_data('."'".$query->id."'".')">Edit</button> <button type="button" class="btn btn-circle btn-xs red" data-target="hapus-modal-pengguna" data-toggle="modal">Delete</button>';
                })
                ->rawColumns(['options','foto', 'confirmed'])
                ->toJson();
@@ -86,5 +86,13 @@ class PenggunaController extends Controller
         }
         $_pengguna->delete();
         // return $this->sendResponse($id, 'Pengguna deleted successfully');
+    }
+
+    public function editPengguna($id,Request $request)
+    {
+        $_pengguna = new Pengguna();
+        $_pengguna = $_pengguna->findOrFail($id);
+
+
     }
 }
